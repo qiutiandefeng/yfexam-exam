@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yf.exam.modules.exam.mapper.ExamDepartMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yf.exam.modules.exam.entity.ExamDepart">
+        <id column="id" property="id" />
+        <result column="exam_id" property="examId" />
+        <result column="depart_id" property="departId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        `id`,`exam_id`,`depart_id`
+    </sql>
+
+</mapper>

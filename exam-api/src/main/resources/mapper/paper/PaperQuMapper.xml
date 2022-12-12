@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yf.exam.modules.paper.mapper.PaperQuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yf.exam.modules.paper.entity.PaperQu">
+        <id column="id" property="id" />
+        <result column="paper_id" property="paperId" />
+        <result column="qu_id" property="quId" />
+        <result column="qu_type" property="quType" />
+        <result column="answered" property="answered" />
+        <result column="answer" property="answer" />
+        <result column="sort" property="sort" />
+        <result column="score" property="score" />
+        <result column="actual_score" property="actualScore" />
+        <result column="is_right" property="isRight" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        `id`,`paper_id`,`qu_id`,`qu_type`,`answered`,`answer`,`sort`,`score`,`actual_score`,`is_right`
+    </sql>
+
+
+    <!-- 计算总分 -->
+    <select id="sumObjective" resultType="int">
+		SELECT IFNULL(SUM(actual_score),0) as total
+		FROM el_paper_qu
+		WHERE paper_id=#{paperId}
+		AND is_right=true
+		AND qu_type &lt; 4
+	</select>
+
+    <select id="sumSubjective" resultType="int">
+		SELECT IFNULL(SUM(actual_score),0) as total
+		FROM el_paper_qu
+		WHERE paper_id=#{paperId}
+		AND qu_type=4
+	</select>
+
+    <resultMap id="ListResultMap" extends="BaseResultMap" type="com.yf.exam.modules.paper.dto.ext.PaperQuDetailDTO">
+
+        <result column="image" property="image" />
+        <result column="content" property="content" />
+        <collection property="answerList" column="{paperId=paper_id,quId=qu_id}"
+                    select="com.yf.exam.modules.paper.mapper.PaperQuAnswerMapper.listForShow"></collection>
+
+    </resultMap>
+
+    <select id="listByPaper" resultMap="ListResultMap">
+        SELECT pq.*,eq.content,eq.image
+        FROM el_paper_qu pq
+        LEFT JOIN el_qu eq ON pq.qu_id = eq.id
+        WHERE pq.paper_id=#{paperId}
+        ORDER BY pq.sort ASC
+    </select>
+
+</mapper>

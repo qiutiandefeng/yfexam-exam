@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yf.exam.modules.user.exam.mapper.UserExamMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yf.exam.modules.user.exam.entity.UserExam">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="exam_id" property="examId" />
+        <result column="try_count" property="tryCount" />
+        <result column="max_score" property="maxScore" />
+        <result column="passed" property="passed" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        `id`,`user_id`,`exam_id`,`try_count`,`max_score`,`passed`,`create_time`,`update_time`
+    </sql>
+
+
+    <resultMap id="ListResultMap"
+               type="com.yf.exam.modules.user.exam.dto.response.UserExamRespDTO"
+               extends="BaseResultMap">
+        <result column="title" property="title" />
+        <result column="real_name" property="realName" />
+    </resultMap>
+
+
+    <select id="paging" resultMap="ListResultMap">
+        SELECT ue.*,ee.title,uc.real_name FROM el_user_exam ue
+        LEFT JOIN el_exam ee ON ue.exam_id=ee.id
+        LEFT JOIN sys_user uc ON ue.user_id=uc.id
+        WHERE ee.id IS NOT NULL AND uc.id IS NOT NULL
+
+        <if test="query!=null">
+
+            <if test="query.userId!=null and query.userId!=''">
+                AND ue.user_id='{{userId}}'
+            </if>
+
+            <if test="query.examId!=null and query.examId!=''">
+                AND ue.exam_id = #{query.examId}
+            </if>
+
+            <if test="query.title!=null and query.title!=''">
+                AND ee.title LIKE '%${query.title}%'
+            </if>
+            <if test="query.realName!=null and query.realName!=''">
+                AND uc.real_name LIKE '%${query.realName}%'
+            </if>
+        </if>
+
+    </select>
+</mapper>

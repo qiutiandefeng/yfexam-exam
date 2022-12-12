@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yf.exam.modules.sys.depart.mapper.SysDepartMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yf.exam.modules.sys.depart.entity.SysDepart">
+        <id column="id" property="id" />
+        <result column="dept_type" property="deptType" />
+        <result column="parent_id" property="parentId" />
+        <result column="dept_name" property="deptName" />
+        <result column="dept_code" property="deptCode" />
+        <result column="sort" property="sort" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        `id`,`dept_type`,`parent_id`,`dept_name`,`dept_code`,`sort`
+    </sql>
+
+
+    <resultMap id="TreeResultMap"
+               type="com.yf.exam.modules.sys.depart.dto.response.SysDepartTreeDTO"
+               extends="BaseResultMap">
+        <collection property="children" column="id" select="findChildren"></collection>
+    </resultMap>
+
+
+    <select id="findChildren" resultMap="TreeResultMap">
+        SELECT * FROM sys_depart WHERE parent_id=#{id}
+    </select>
+
+    <select id="paging" resultMap="TreeResultMap">
+        SELECT * FROM sys_depart WHERE parent_id='0'
+        <if test="query!=null">
+            <if test="query.deptName!=null and query.deptName!=''">
+                AND dept_name LIKE '%${query.deptName}%'
+            </if>
+        </if>
+    </select>
+
+</mapper>

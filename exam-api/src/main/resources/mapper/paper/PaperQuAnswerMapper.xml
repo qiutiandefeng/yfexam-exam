@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yf.exam.modules.paper.mapper.PaperQuAnswerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yf.exam.modules.paper.entity.PaperQuAnswer">
+        <id column="id" property="id" />
+        <result column="paper_id" property="paperId" />
+        <result column="answer_id" property="answerId" />
+        <result column="qu_id" property="quId" />
+        <result column="is_right" property="isRight" />
+        <result column="checked" property="checked" />
+        <result column="sort" property="sort" />
+        <result column="abc" property="abc" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        `id`,`paper_id`,`answer_id`,`qu_id`,`is_right`,`checked`,`sort`,`abc`
+    </sql>
+
+    <resultMap id="ListResultMap"
+               type="com.yf.exam.modules.paper.dto.ext.PaperQuAnswerExtDTO"
+               extends="BaseResultMap">
+        <result column="image" property="image" />
+        <result column="content" property="content" />
+    </resultMap>
+
+
+    <select id="list" resultMap="ListResultMap">
+        SELECT pa.`id`,pa.`paper_id`,pa.`answer_id`,pa.`qu_id`,pa.`checked`,pa.`sort`,pa.`abc`,qa.content,qa.image
+        FROM el_paper_qu_answer pa
+        LEFT JOIN el_qu_answer qa ON pa.answer_id=qa.id
+        WHERE pa.paper_id=#{paperId} AND pa.qu_id=#{quId}
+        ORDER BY pa.sort ASC
+    </select>
+
+    <select id="listForShow" resultMap="ListResultMap">
+        SELECT pa.`id`,pa.`paper_id`,pa.`answer_id`,pa.`qu_id`,pa.`checked`,pa.`sort`,pa.`abc`,qa.content,qa.is_right,qa.image
+        FROM el_paper_qu_answer pa
+        LEFT JOIN el_qu_answer qa ON pa.answer_id=qa.id
+        WHERE pa.paper_id=#{paperId} AND pa.qu_id=#{quId}
+        ORDER BY pa.sort ASC
+    </select>
+
+</mapper>

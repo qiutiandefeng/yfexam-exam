@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yf.exam.modules.qu.mapper.QuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yf.exam.modules.qu.entity.Qu">
+        <id column="id" property="id" />
+        <result column="qu_type" property="quType" />
+        <result column="level" property="level" />
+        <result column="image" property="image" />
+        <result column="content" property="content" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="remark" property="remark" />
+        <result column="analysis" property="analysis" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        `id`,`qu_type`,`level`,`image`,`content`,`create_time`,`update_time`,`remark`,`analysis`
+    </sql>
+
+
+    <!-- 随机取数据 -->
+    <select id="listByRandom" resultMap="BaseResultMap">
+        SELECT a.*
+        FROM el_qu a
+        LEFT JOIN el_qu_repo b ON a.id=b.qu_id
+        WHERE b.repo_id=#{repoId} AND a.qu_type=#{quType}
+        <if test="excludes!=null">
+            AND a.id NOT IN
+            <foreach item="item" collection="excludes" separator="," open="(" close=")" index="">'${item}'</foreach>
+        </if>
+        ORDER BY RAND()
+        LIMIT ${size}
+    </select>
+
+
+    <resultMap id="ExportResultMap" type="com.yf.exam.modules.qu.dto.export.QuExportDTO">
+        <id column="q_id" property="qId"  />
+        <result column="qu_type" property="quType"  />
+        <result column="q_content" property="qContent"  />
+        <result column="q_analysis" property="qAnalysis"  />
+        <result column="a_is_right" property="aIsRight"  />
+        <result column="a_content" property="aContent"  />
+        <result column="a_analysis" property="aAnalysis"  />
+        <collection property="repoList" column="q_id" select="selectRepos"/>
+    </resultMap>
+
+    <select id="selectRepos" resultType="String">
+		SELECT repo_id FROM el_qu_repo po WHERE po.qu_id=#{qId}
+	</select>
+
+
+    <sql id="query">
+        <where>
+            <if test="query!=null">
+                <if test="query.quType!=null">
+                    AND q.qu_type = #{query.quType}
+                </if>
+                <if test="query.repoIds!=null and query.repoIds.size()>0">
+                    AND po.repo_id IN
+                    <foreach collection="query.repoIds" open="(" close=")" separator="," item="repoId">#{repoId}</foreach>
+                </if>
+
+                <if test="query.content!=null and query.content!=''">
+                    AND q.content LIKE '%${query.content}%'
+                </if>
+
+                <if test="query.excludes!=null and query.excludes.size()>0">
+                    AND q.id NOT IN
+                    <foreach collection="query.excludes" open="(" close=")" separator="," item="quId">
+                    #{quId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </sql>
+
+    <select id="paging" resultMap="BaseResultMap">
+        SELECT q.*
+        FROM el_qu q
+        LEFT JOIN el_qu_repo po ON q.id=po.qu_id
+        <include refid="query" />
+        GROUP BY q.id ORDER BY q.update_time DESC
+    </select>
+
+
+    <select id="listForExport" resultMap="ExportResultMap">
+        SELECT
+        q.id as q_id,
+        q.qu_type,
+        q.content AS q_content,
+        q.analysis as q_analysis,
+        a.content as a_content,
+        a.is_right as a_is_right,
+        a.analysis as a_analysis
+        FROM el_qu q
+        LEFT JOIN el_qu_answer a ON q.id=a.qu_id
+        LEFT JOIN el_qu_repo po ON q.id=po.qu_id
+        <include refid="query" />
+        GROUP BY a.id ORDER BY q.id
+        LIMIT 10000
+    </select>
+
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yf.exam.modules.repo.mapper.RepoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yf.exam.modules.repo.entity.Repo">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="title" property="title" />
+        <result column="remark" property="remark" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        `id`,`code`,`title`,`radio_count`,`multi_count`,`judge_count`,`remark`,`create_time`,`update_time`
+    </sql>
+
+
+    <resultMap id="ListResultMap"
+               type="com.yf.exam.modules.repo.dto.response.RepoRespDTO"
+               extends="BaseResultMap">
+        <result column="radio_count" property="radioCount" />
+        <result column="multi_count" property="multiCount" />
+        <result column="judge_count" property="judgeCount" />
+    </resultMap>
+
+    <select id="paging" resultMap="ListResultMap">
+        SELECT `id`, `code`, `title`, `remark`, `create_time`, `update_time`,
+        (SELECT COUNT(0) FROM el_qu_repo WHERE repo_id=repo.id AND qu_type=1) AS radio_count,
+        (SELECT COUNT(0) FROM el_qu_repo WHERE repo_id=repo.id AND qu_type=2) AS multi_count,
+        (SELECT COUNT(0) FROM el_qu_repo WHERE repo_id=repo.id AND qu_type=3) AS judge_count
+        FROM el_repo repo
+        <where>
+            <if test="query!=null">
+                <if test="query.title!=null and query.title!=''">
+                    AND repo.title LIKE CONCAT('%',#{query.title}, '%')
+                </if>
+
+                <if test="query.excludes!=null and query.excludes.size()>0">
+                    AND repo.id NOT IN
+                    <foreach collection="query.excludes" open="(" close=")" separator="," item="id">
+                        #{id}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

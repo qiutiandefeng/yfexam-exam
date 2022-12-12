@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yf.exam.modules.qu.mapper.QuAnswerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yf.exam.modules.qu.entity.QuAnswer">
+        <id column="id" property="id" />
+        <result column="qu_id" property="quId" />
+        <result column="is_right" property="isRight" />
+        <result column="image" property="image" />
+        <result column="content" property="content" />
+        <result column="analysis" property="analysis" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        `id`,`qu_id`,`is_right`,`image`,`content`,`analysis`
+    </sql>
+
+</mapper>

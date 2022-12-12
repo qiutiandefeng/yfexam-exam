@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yf.exam.modules.exam.mapper.ExamRepoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yf.exam.modules.exam.entity.ExamRepo">
+        <id column="id" property="id" />
+        <result column="exam_id" property="examId" />
+        <result column="repo_id" property="repoId" />
+        <result column="radio_count" property="radioCount" />
+        <result column="radio_score" property="radioScore" />
+        <result column="multi_count" property="multiCount" />
+        <result column="multi_score" property="multiScore" />
+        <result column="judge_count" property="judgeCount" />
+        <result column="judge_score" property="judgeScore" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        `id`,`exam_id`,`repo_id`,`radio_count`,`radio_score`,`multi_count`,`multi_score`,`judge_count`,`judge_score`
+    </sql>
+
+    <resultMap id="ExtResultMap" type="com.yf.exam.modules.exam.dto.ext.ExamRepoExtDTO" extends="BaseResultMap">
+        <result column="totalRadio" property="totalRadio" />
+        <result column="totalMulti" property="totalMulti" />
+        <result column="totalJudge" property="totalJudge" />
+    </resultMap>
+
+    <select id="listByExam" resultMap="ExtResultMap">
+        SELECT ep.*,
+               (SELECT COUNT(0) FROM el_qu_repo WHERE repo_id=ep.repo_id AND qu_type=1) AS totalRadio,
+               (SELECT COUNT(0) FROM el_qu_repo WHERE repo_id=ep.repo_id AND qu_type=2) AS totalMulti,
+               (SELECT COUNT(0) FROM el_qu_repo WHERE repo_id=ep.repo_id AND qu_type=3) AS totalJudge
+        FROM el_exam_repo ep
+        WHERE ep.exam_id=#{examId}
+    </select>
+
+</mapper>

@@ -1,0 +1,8 @@
+ <service>
+  <id>yf-exam</id>
+  <name>CloudExam</name>
+  <description>云帆在线考试系统服务，运行在http://localhost:8101</description>
+  <executable>java</executable>
+  <arguments>-jar exam-api.jar --spring.config.location=application.properties</arguments>
+  <log mode="roll"></log>
+</service>

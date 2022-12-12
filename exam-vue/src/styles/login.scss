@@ -1,0 +1,87 @@
+.login-box {
+  width: 400px;
+  background: #fff;
+  padding: 20px;
+  border: #eee 1px solid;
+  border-radius: 5px;
+  height: 450px;
+}
+
+.el-tab-pane{
+  margin-top: 15px;
+}
+
+.login-container{
+  display: flex;
+  flex-direction: column;
+  background-image: url('~@/assets/login-bg.svg');
+  background-repeat: no-repeat;
+  background-position: center 110px;
+  background-size: 100%;
+  height: 100vh;
+  background-color: #f0f2f5;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-box{
+  text-align: center;
+  line-height: 50px;
+  margin-bottom: 30px;
+}
+
+.site-title{
+  position: relative;
+  top: 2px;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 600;
+  font-size: 33px;
+  font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  line-height: 44px;
+}
+
+.logo-title{
+  line-height: 44px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center
+}
+
+.logo-img{
+  height: 44px; margin-right: 10px
+}
+
+.footer{
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+  color: #999;
+  background: #fcfcfc;
+  line-height: 48px;
+}
+
+.other{
+  color: #606266;
+  font-size: 26px;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.wechat :hover{
+  color: #03E06E;
+}
+
+.wechat2 :hover{
+  color: #0082EF;
+}
+
+.ding :hover{
+  color: #3296FA;
+}
+
+::v-deep
+.el-form-item__content{
+  line-height: 0px !important;
+}

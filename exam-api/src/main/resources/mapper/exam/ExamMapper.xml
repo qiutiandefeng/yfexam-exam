@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yf.exam.modules.exam.mapper.ExamMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yf.exam.modules.exam.entity.Exam">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <result column="open_type" property="openType" />
+        <result column="state" property="state" />
+        <result column="time_limit" property="timeLimit" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="total_score" property="totalScore" />
+        <result column="total_time" property="totalTime" />
+        <result column="qualify_score" property="qualifyScore" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        `id`,`title`,`content`,`open_type`,`join_type`,`level`,`state`,`time_limit`,`start_time`,`end_time`,`create_time`,`update_time`,`total_score`,`total_time`,`qualify_score`
+    </sql>
+
+
+    <resultMap id="ReviewResultMap"
+               type="com.yf.exam.modules.exam.dto.response.ExamReviewRespDTO"
+               extends="BaseResultMap">
+        <result column="examUser" property="examUser" />
+        <result column="unreadPaper" property="unreadPaper" />
+    </resultMap>
+
+
+    <resultMap id="ListResultMap"
+               type="com.yf.exam.modules.exam.dto.ExamDTO"
+    extends="BaseResultMap">
+
+    </resultMap>
+
+    <select id="paging" resultMap="ListResultMap">
+        SELECT * FROM el_exam
+        <where>
+            <if test="query!=null">
+                <if test="query.title!=null and query.title!=''">
+                    AND title LIKE '%${query.title}%'
+                </if>
+
+                <if test="query.openType!=null">
+                    AND open_type = #{query.openType}
+                </if>
+
+                <if test="query.startTime!=null">
+                    AND start_time >= #{query.startTime}
+                </if>
+
+                <if test="query.endTime!=null">
+                    AND end_time &lt;= #{query.endTime}
+                </if>
+
+            </if>
+        </where>
+    </select>
+
+    <select id="reviewPaging" resultMap="ReviewResultMap">
+        SELECT ex.*,
+        (SELECT COUNT(DISTINCT user_id) FROM el_paper WHERE exam_id=ex.id) as examUser,
+        (SELECT COUNT(0) FROM el_paper WHERE exam_id=ex.id AND state=1) as unreadPaper
+        FROM el_exam ex
+        WHERE ex.has_saq=1
+    </select>
+
+
+    <resultMap id="OnlineResultMap"
+               type="com.yf.exam.modules.exam.dto.response.ExamOnlineRespDTO"
+               extends="BaseResultMap">
+    </resultMap>
+
+    <select id="online" resultMap="OnlineResultMap">
+        SELECT ex.*
+        FROM el_exam ex
+        LEFT JOIN el_exam_depart dept ON ex.id=dept.exam_id AND ex.open_type=2
+        LEFT JOIN sys_user uc ON uc.depart_id=dept.depart_id
+        WHERE ex.state=0 AND (ex.open_type=1 OR ex.open_type=3 OR uc.id='{{userId}}')
+
+        <if test="query!=null">
+            <if test="query.title!=null and query.title!=''">
+                AND ex.title LIKE '%${query.title}%'
+            </if>
+
+            <if test="query.openType!=null">
+                AND ex.open_type=#{query.openType}
+            </if>
+        </if>
+
+
+    </select>
+
+</mapper>
