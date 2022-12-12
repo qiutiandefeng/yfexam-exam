@@ -16,9 +16,7 @@
 杨经理：     
     邮箱：626264481@qq.com   
     手机：18710213152 
-    微信号：youyouwx0613
-    
-![输入图片说明](touxiang.png)       
+    微信号：youyouwx0613     
 
 # 介绍
 一款多角色在线培训考试系统，系统集成了用户管理、角色管理、部门管理、题库管理、试题管理、试题导入导出、考试管理、在线考试、错题训练等功能，考试流程完善。
@@ -90,6 +88,3 @@ QQ交流群：865330294
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/1019/183032_f5016335_2189748.jpeg "1010.jpg")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/1019/183040_38fd74ed_2189748.jpeg "1111.jpg")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/1019/183047_a31619cd_2189748.jpeg "1212.jpg")
-
-# 开源版&商业版对比
-![输入图片说明](duibi.png)
