@@ -3,7 +3,8 @@
 # 项目演示
 开源版本：https://lite.yfhl.net  
 管理账号：admin/admin    
-学员账号：person/person   
+学员账号：person/person
+
 注意事项：演示环境数据每天晚上会重新初始化，不要往上面导入重要数据；如果账号密码被改无法登录，请联系我们；或等到第二天再访问 :joy: 
 
 # 商业版本
