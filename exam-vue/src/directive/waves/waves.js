@@ -1,7 +1,5 @@
 import './waves.css'
-
 const context = '@@wavesContext'
-
 function handleClick(el, binding) {
   function handle(e) {
     const customOpts = Object.assign({}, binding.value)
