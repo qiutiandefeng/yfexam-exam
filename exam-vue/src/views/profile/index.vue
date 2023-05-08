@@ -6,7 +6,6 @@
         <el-col :span="6" :xs="24">
           <user-card :user="user" />
         </el-col>
-
         <el-col :span="18" :xs="24">
           <el-card>
             <el-tabs v-model="activeTab">
