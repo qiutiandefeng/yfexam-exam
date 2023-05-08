@@ -14,7 +14,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import RightPanel from '@/components/RightPanel'
 import { AppMain, Navbar, Settings, Sidebar, TagsView } from './components'
