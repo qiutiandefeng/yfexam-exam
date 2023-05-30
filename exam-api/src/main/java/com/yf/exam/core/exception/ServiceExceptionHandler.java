@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-
 /**
  * 统一异常处理类
  * @author bool 
