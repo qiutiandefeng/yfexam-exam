@@ -7,7 +7,6 @@ export { parseTime, formatTime } from '@/utils'
 export function uppercaseFirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
-
 /**
  * 通用状态过滤器
  * @param value
