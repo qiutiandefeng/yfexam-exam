@@ -3,7 +3,6 @@ import Router from 'vue-router'
 Vue.use(Router)
 // 主要框架
 import Layout from '@/layout'
-
 // 登录框架
 import LoginLayout from '@/views/login/components/LoginLayout'
 
