@@ -18,7 +18,6 @@ vueSticky.install = Vue => {
       const elHeight = el.getBoundingClientRect().height
       const elWidth = el.getBoundingClientRect().width
       elStyle.cssText = `top: ${stickyTop}px; z-index: ${zIndex}`
-
       const parentElm = el.parentNode || document.documentElement
       const placeholder = document.createElement('div')
       placeholder.style.display = 'none'
