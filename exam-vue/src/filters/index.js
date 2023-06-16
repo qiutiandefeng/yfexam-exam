@@ -19,7 +19,6 @@ export function stateFilter(value) {
   }
   return map[value]
 }
-
 export function quTypeFilter(value) {
   const map = {
     '1': '单选题',
