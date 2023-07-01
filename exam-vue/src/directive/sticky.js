@@ -26,7 +26,6 @@ vueSticky.install = Vue => {
       parentElm.insertBefore(placeholder, el)
 
       let active = false
-
       const getScroll = (target, top) => {
         const prop = top ? 'pageYOffset' : 'pageXOffset'
         const method = top ? 'scrollTop' : 'scrollLeft'
