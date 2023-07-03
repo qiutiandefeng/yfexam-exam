@@ -13,6 +13,7 @@
       </right-panel>
     </div>
   </div>
+  
 </template>
 <script>
 import RightPanel from '@/components/RightPanel'
