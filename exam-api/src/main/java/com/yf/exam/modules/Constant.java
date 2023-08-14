@@ -1,6 +1,5 @@
 package com.yf.exam.modules;
 
-
 /**
  * 通用常量
  * @author bool
