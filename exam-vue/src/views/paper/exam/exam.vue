@@ -72,7 +72,7 @@
           <div v-if="quData.quType === 2">
 
             <el-checkbox-group v-model="multiValue">
-              <el-checkbox v-for="item in quData.answerList" :label="item.id">{{ item.abc }}.{{ item.content }}
+              <el-checkbox v-for="item in quData.answerList" :key="item.id" :label="item.id">{{ item.abc }}.{{ item.content }}
                 <div v-if="item.image!=null && item.image!=''" style="clear: both">
                   <el-image :src="item.image" style="max-width:100%;" />
                 </div>
@@ -338,11 +338,11 @@ export default {
         this.paperData = response.data
 
         // 获得第一题内容
-        if (this.paperData.radioList) {
+        if (this.paperData.radioList && this.paperData.radioList.length>0) {
           this.cardItem = this.paperData.radioList[0]
-        } else if (this.paperData.multiList) {
+        } else if (this.paperData.multiList && this.paperData.multiList.length>0) {
           this.cardItem = this.paperData.multiList[0]
-        } else if (this.paperData.judgeList) {
+        } else if (this.paperData.judgeList && this.paperData.judgeList.length>0) {
           this.cardItem = this.paperData.judgeList[0]
         }
 

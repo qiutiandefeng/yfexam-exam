@@ -1,5 +1,6 @@
 // import parseTime, formatTime and set to filter
 export { parseTime, formatTime } from '@/utils'
+
 /**
  * Upper case first char
  * @param {String} string
@@ -7,6 +8,7 @@ export { parseTime, formatTime } from '@/utils'
 export function uppercaseFirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
+
 /**
  * 通用状态过滤器
  * @param value
@@ -19,6 +21,7 @@ export function stateFilter(value) {
   }
   return map[value]
 }
+
 export function quTypeFilter(value) {
   const map = {
     '1': '单选题',

@@ -13,19 +13,48 @@ spring:
     url: jdbc:mysql://localhost:3306/yf_exam_lite?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true
     username: root
     password: root
-    filters: stat
-    max-active: 5000
-    initial-size: 20
-    max-wait: 6000
-    min-idle: 1
-    time-between-eviction-runs-millis: 60000
-    min-evictable-idle-time-millis: 300000
-    test-while-idle: true
-    test-on-borrow: false
-    test-on-return: false
-    pool-prepared-statements: true
-    max-open-prepared-statements: 1000
-    async-init: true
+    # druid相关配置
+    druid:
+      max-active: 5000
+      initial-size: 20
+      min-idle: 5
+      async-init: true
+      # 监控统计
+      filters: stat,wall
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 5000
+        wall:
+          config:
+            create-table-allow: false
+            alter-table-allow: false
+            drop-table-allow: false
+            truncate-allow: false
+
+  # 定时任务配置
+  quartz:
+    # 数据库方式
+    job-store-type: jdbc
+    # quartz 相关属性配置
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: examScheduler
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: true
+            clusterCheckinInterval: 10000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
 
 server:
   port: 8101
@@ -43,6 +72,8 @@ conf:
     # 访问地址，注意不要去除/upload/file/，此节点为虚拟标识符
     # 如：http://localhost:8101/upload/file/exam.jpg，对应物理文件为：/data/upload/exam.jpg
     url: http://localhost:8101/upload/file/
+    # 允许上传的文件后缀
+    allow-extensions: jpg,jpeg,png
 
 # 开启文档
 swagger:

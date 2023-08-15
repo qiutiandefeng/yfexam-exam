@@ -45,10 +45,10 @@
             </if>
 
             <if test="query.title!=null and query.title!=''">
-                AND ee.title LIKE '%${query.title}%'
+                AND ee.title LIKE CONCAT('%',#{query.title},'%')
             </if>
             <if test="query.realName!=null and query.realName!=''">
-                AND uc.real_name LIKE '%${query.realName}%'
+                AND uc.real_name LIKE CONCAT('%',#{query.realName},'%')
             </if>
         </if>
 

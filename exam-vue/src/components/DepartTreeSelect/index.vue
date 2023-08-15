@@ -16,7 +16,7 @@
       :filter-node-method="filterNode"
       placeholder="选择部门"
       class="select-tree"
-      check-strictly="false"
+      :check-strictly="false"
       highlight-current
       default-expand-all
       @node-click="onClickNode"

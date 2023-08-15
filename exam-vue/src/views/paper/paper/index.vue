@@ -7,7 +7,7 @@
       :options="options"
       :list-query="listQuery"
     >
-      <template slot="filter-content" style="display: flex; align-items: flex-start">
+      <template #filter-content style="display: flex; align-items: flex-start">
 
         <exam-select v-model="listQuery.params.examId" class="filter-item" />
 
@@ -23,7 +23,7 @@
 
       </template>
 
-      <template slot="data-columns">
+      <template #data-columns>
 
         <el-table-column
           label="考试名称"
@@ -31,7 +31,7 @@
           prop="title"
         >
 
-          <template slot-scope="scope">
+          <template v-slot="scope">
             <router-link :to="{ name: 'ShowExam', params: {id : scope.row.id}}">
               {{ scope.row.title }}
             </router-link>
@@ -58,7 +58,7 @@
           prop="totalTime"
         >
 
-          <template slot-scope="scope">
+          <template v-slot="scope">
             {{ scope.row.userTime }} / {{ scope.row.totalTime }}
           </template>
 
@@ -81,7 +81,7 @@
           align="center"
         >
 
-          <template slot-scope="scope">
+          <template v-slot="scope">
             {{ scope.row.userScore }} / {{ scope.row.totalScore }}
           </template>
 
@@ -99,7 +99,7 @@
           align="center"
         >
 
-          <template slot-scope="scope">
+          <template v-slot="scope">
             <span v-if="scope.row.state===1">待阅卷</span>
             <span v-else-if="scope.row.state===0">待交卷</span>
             <span v-else>
@@ -116,7 +116,7 @@
           align="center"
         >
 
-          <template slot-scope="scope">
+          <template v-slot="scope">
             {{ scope.row.state | paperStateFilter }}
           </template>
 
@@ -127,7 +127,7 @@
           align="center"
         >
 
-          <template slot-scope="scope">
+          <template v-slot="scope">
             <el-button type="primary" size="small" @click="handleCapture(scope.row.id)">考试截图</el-button>
           </template>
 
@@ -139,7 +139,7 @@
 
     <el-dialog :visible.sync="dialogVisible" title="考试截图" width="500px">
 
-      <img v-for="item in captureList" :src="item.capture" style="width: 230px">
+      <img v-for="item in captureList" :key="item.capture" :src="item.capture" style="width: 230px">
 
     </el-dialog>
 

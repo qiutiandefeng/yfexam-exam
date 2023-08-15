@@ -8,7 +8,7 @@
       :list-query="listQuery"
       @multi-actions="handleMultiAction"
     >
-      <template slot="data-columns">
+      <template #data-columns>
 
         <el-table-column
           label="角色ID"

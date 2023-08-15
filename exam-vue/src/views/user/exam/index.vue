@@ -6,13 +6,13 @@
       :options="options"
       :list-query="listQuery"
     >
-      <template slot="filter-content">
+      <template #filter-content>
 
         <el-input v-model="listQuery.params.realName" placeholder="搜索人员" style="width: 200px;" class="filter-item" />
 
       </template>
 
-      <template slot="data-columns">
+      <template #data-columns>
 
         <el-table-column
           label="人员"
@@ -37,7 +37,7 @@
           align="center"
         >
 
-          <template slot-scope="scope">
+          <template v-slot="scope">
             <span v-if="scope.row.passed" style="color: #00ff00;">通过</span>
             <span v-else style="color: #ff0000;">未通过</span>
           </template>
@@ -54,7 +54,7 @@
           label="操作"
           align="center"
         >
-          <template slot-scope="scope">
+          <template v-slot="scope">
             <el-button type="primary" size="mini" icon="el-icon-view" @click="handleExamDetail(scope.row.examId, scope.row.userId)">考试明细</el-button>
           </template>
 

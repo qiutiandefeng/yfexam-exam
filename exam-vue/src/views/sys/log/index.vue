@@ -8,7 +8,7 @@
       :list-query="listQuery"
     >
 
-      <template slot="filter-content">
+      <template #filter-content>
         <el-select v-model="listQuery.params.title" clearable class="filter-item">
           <el-option
             v-for="item in types"
@@ -20,7 +20,7 @@
         <el-input v-model="listQuery.params.userName" clearable placeholder="操作人" style="width: 200px;" class="filter-item" />
       </template>
 
-      <template slot="data-columns">
+      <template #data-columns>
 
         <el-table-column
           label="日志类型"

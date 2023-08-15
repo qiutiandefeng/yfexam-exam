@@ -12,15 +12,23 @@
 
         <div v-if="quData.quType === 1 || quData.quType===3 ">
           <el-radio-group v-model="answerValues[0]" readonly>
-            <el-radio v-for="an in quData.answerList" :label="an.id" readonly>{{ an.abc }}.{{ an.content }}</el-radio>
+            <el-radio v-for="an in quData.answerList" :key="an.id" :label="an.id" readonly>
+              {{ an.abc }}.{{ an.content }}
+              <div v-if="an.image!=null && an.image!=''" style="clear: both">
+                <el-image :src="an.image" style="max-width:100%;" />
+              </div>
+            </el-radio>
           </el-radio-group>
         </div>
 
         <!-- 多选题 -->
         <div v-if="quData.quType === 2">
           <el-checkbox-group v-model="answerValues" readonly>
-            <el-checkbox v-for="an in quData.answerList" :label="an.id">
+            <el-checkbox v-for="an in quData.answerList" :key="an.id" :label="an.id">
               {{ an.abc }}.{{ an.content }}
+              <div v-if="an.image!=null && an.image!=''" style="clear: both">
+                <el-image :src="an.image" style="max-width:100%;" />
+              </div>
             </el-checkbox>
           </el-checkbox-group>
         </div>

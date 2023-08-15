@@ -5,7 +5,7 @@
     :options="options"
     :list-query="listQuery"
   >
-    <template slot="filter-content">
+    <template #filter-content>
 
       <el-input v-model="listQuery.params.title" placeholder="搜索题目内容" style="width: 200px;" class="filter-item" />
 
@@ -15,13 +15,13 @@
 
     </template>
 
-    <template slot="data-columns">
+    <template #data-columns>
 
       <el-table-column
         label="题目内容"
         show-overflow-tooltip
       >
-        <template slot-scope="scope">
+        <template v-slot="scope">
           <router-link :to="{ name: 'ViewQu', params:{ id: scope.row.quId}}">
             {{ scope.row.title }}
           </router-link>

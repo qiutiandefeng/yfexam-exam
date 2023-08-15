@@ -48,6 +48,7 @@ export default {
   data() {
     return {
       loading: false,
+      isDemo: this.$demo,
       postForm: {
         username: '',
         password: ''
@@ -62,6 +63,14 @@ export default {
     ...mapGetters([
       'siteData'
     ])
+  },
+  mounted() {
+
+    // 演示账号密码
+    if(this.isDemo){
+      this.postForm.username = 'admin'
+      this.postForm.password = 'admin'
+    }
   },
 
   methods: {

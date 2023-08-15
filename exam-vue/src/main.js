@@ -30,6 +30,9 @@ Object.keys(filters).forEach(key => {
 
 Vue.config.productionTip = false
 
+// 环境标识
+Vue.prototype.$demo = process.env.NODE_ENV === 'demo'
+
 new Vue({
   el: '#app',
   router,

@@ -23,14 +23,14 @@
       <el-table-column label="编码" prop="deptCode" />
 
       <el-table-column align="center" label="排序">
-        <template slot-scope="scope">
+        <template v-slot="scope">
           <el-button title="向下排序" size="small" icon="el-icon-sort-down" circle @click="handleSort(scope.row.id, 1)" />
           <el-button title="向上排序" size="small" icon="el-icon-sort-up" circle @click="handleSort(scope.row.id, 0)" />
         </template>
       </el-table-column>
 
       <el-table-column align="center" label="操作项">
-        <template slot-scope="scope">
+        <template v-slot="scope">
           <el-button size="small" icon="el-icon-plus" circle @click="formDialog(scope.row.id)" />
           <el-button size="small" icon="el-icon-edit" circle @click="formDialog(scope.row.parentId, scope.row.id)" />
           <el-button size="small" icon="el-icon-delete" circle @click="handleDelete(scope.row.id)" />

@@ -42,34 +42,34 @@ import java.util.Map;
  * @version 2016-04-21
  */
 public class ExportExcel {
-	
+
 	private static Logger log = LoggerFactory.getLogger(ExportExcel.class);
-			
+
 	/**
 	 * 工作薄对象
 	 */
 	private SXSSFWorkbook wb;
-	
+
 	/**
 	 * 工作表对象
 	 */
 	private Sheet sheet;
-	
+
 	/**
 	 * 样式列表
 	 */
 	private Map<String, CellStyle> styles;
-	
+
 	/**
 	 * 当前行号
 	 */
 	private int rownum;
-	
+
 	/**
 	 * 注解列表（Object[]{ ExcelField, Field/Method }）
 	 */
 	List<Object[]> annotationList = Lists.newArrayList();
-	
+
 	/**
 	 * 构造函数
 	 * @param title 表格标题，传“空值”，表示无标题
@@ -78,7 +78,7 @@ public class ExportExcel {
 	public ExportExcel(String title, Class<?> cls){
 		this(title, cls, 1);
 	}
-	
+
 	/**
 	 * 构造函数
 	 * @param title 表格标题，传“空值”，表示无标题
@@ -87,7 +87,7 @@ public class ExportExcel {
 	 * @param groups 导入分组
 	 */
 	public ExportExcel(String title, Class<?> cls, int type, int... groups){
-		// Get annotation field 
+		// Get annotation field
 		Field[] fs = cls.getDeclaredFields();
 		for (Field f : fs){
 			ExcelField ef = f.getAnnotation(ExcelField.class);
@@ -198,21 +198,21 @@ public class ExportExcel {
 			}
 			sheet.autoSizeColumn(i);
 		}
-		for (int i = 0; i < headerList.size(); i++) {  
+		for (int i = 0; i < headerList.size(); i++) {
 			int colWidth = sheet.getColumnWidth(i)*2;
-	        sheet.setColumnWidth(i, colWidth < 3000 ? 3000 : colWidth);  
+	        sheet.setColumnWidth(i, colWidth < 3000 ? 3000 : colWidth);
 		}
 		log.debug("Initialize success.");
 	}
-	
+
 	/**
 	 * 创建表格样式
 	 * @param wb 工作薄对象
 	 * @return 样式列表
 	 */
 	private Map<String, CellStyle> createStyles(Workbook wb) {
-		Map<String, CellStyle> styles = new HashMap<String, CellStyle>();
-		
+		Map<String, CellStyle> styles = new HashMap<>(16);
+
 		CellStyle style = wb.createCellStyle();
 		style.setAlignment(CellStyle.ALIGN_CENTER);
 		style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
@@ -238,7 +238,7 @@ public class ExportExcel {
 		dataFont.setFontHeightInPoints((short) 10);
 		style.setFont(dataFont);
 		styles.put("data", style);
-		
+
 		style = wb.createCellStyle();
 		style.cloneStyleFrom(styles.get("data"));
 		style.setAlignment(CellStyle.ALIGN_LEFT);
@@ -253,7 +253,7 @@ public class ExportExcel {
 		style.cloneStyleFrom(styles.get("data"));
 		style.setAlignment(CellStyle.ALIGN_RIGHT);
 		styles.put("data3", style);
-		
+
 		style = wb.createCellStyle();
 		style.cloneStyleFrom(styles.get("data"));
 //		style.setWrapText(true);
@@ -267,7 +267,7 @@ public class ExportExcel {
 		headerFont.setColor(IndexedColors.WHITE.getIndex());
 		style.setFont(headerFont);
 		styles.put("header", style);
-		
+
 		return styles;
 	}
 
@@ -278,7 +278,7 @@ public class ExportExcel {
 	public Row addRow(){
 		return sheet.createRow(rownum++);
 	}
-	
+
 
 	/**
 	 * 添加一个单元格
@@ -290,7 +290,7 @@ public class ExportExcel {
 	public Cell addCell(Row row, int column, Object val){
 		return this.addCell(row, column, val, 0, Class.class);
 	}
-	
+
 	/**
 	 * 添加一个单元格
 	 * @param row 添加的行
@@ -323,7 +323,7 @@ public class ExportExcel {
 				if (fieldType != Class.class){
 					cell.setCellValue((String)fieldType.getMethod("setValue", Object.class).invoke(null, val));
 				}else{
-					cell.setCellValue((String)Class.forName(this.getClass().getName().replaceAll(this.getClass().getSimpleName(), 
+					cell.setCellValue((String)Class.forName(this.getClass().getName().replaceAll(this.getClass().getSimpleName(),
 						"fieldtype."+val.getClass().getSimpleName()+"Type")).getMethod("setValue", Object.class).invoke(null, val));
 				}
 			}
@@ -368,7 +368,7 @@ public class ExportExcel {
 		}
 		return this;
 	}
-	
+
 	/**
 	 * 输出数据流
 	 * @param os 输出数据流
@@ -377,7 +377,7 @@ public class ExportExcel {
 		wb.write(os);
 		return this;
 	}
-	
+
 	/**
 	 * 输出到客户端
 	 * @param fileName 输出文件名
@@ -390,7 +390,7 @@ public class ExportExcel {
 		write(response.getOutputStream());
 		return this;
 	}
-	
+
 	/**
 	 * 清理临时文件
 	 */

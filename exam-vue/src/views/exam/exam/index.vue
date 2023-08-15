@@ -5,7 +5,7 @@
     :options="options"
     :list-query="listQuery"
   >
-    <template slot="filter-content">
+    <template #filter-content>
 
       <el-select v-model="listQuery.params.openType" class="filter-item" placeholder="开放类型" clearable>
         <el-option
@@ -36,7 +36,7 @@
 
     </template>
 
-    <template slot="data-columns">
+    <template #data-columns>
 
       <el-table-column
         label="考试名称"
@@ -47,7 +47,7 @@
         label="考试类型"
         align="center"
       >
-        <template slot-scope="scope">
+        <template v-slot="scope">
           {{ scope.row.openType | examOpenType }}
         </template>
 
@@ -59,7 +59,7 @@
         align="center"
       >
 
-        <template slot-scope="scope">
+        <template v-slot="scope">
           <span v-if="scope.row.timeLimit">
             {{ scope.row.startTime }} ~ {{ scope.row.endTime }}
           </span>
@@ -85,7 +85,7 @@
         align="center"
       >
 
-        <template slot-scope="scope">
+        <template v-slot="scope">
           {{ scope.row.state | stateFilter }}
         </template>
 
@@ -96,7 +96,7 @@
         align="center"
         width="220px"
       >
-        <template slot-scope="scope">
+        <template v-slot="scope">
           <el-button type="primary" size="mini" icon="el-icon-edit" @click="handleUpdateExam(scope.row.id)">修改</el-button>
           <el-button type="warning" size="mini" icon="el-icon-user" @click="handleExamDetail(scope.row.id)">考试详情</el-button>
         </template>

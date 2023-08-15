@@ -56,7 +56,7 @@
                     AND pp.state=#{query.state}
                 </if>
                 <if test="query.realName!=null and query.realName!=''">
-                    AND uc.real_name  LIKE '%${query.realName}%'
+                    AND uc.real_name  LIKE CONCAT('%',#{query.realName},'%')
                 </if>
             </if>
         </where>

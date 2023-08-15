@@ -212,7 +212,7 @@ public class QuServiceImpl extends ServiceImpl<QuMapper, Qu> implements QuServic
         List<QuAnswerDTO> list = new ArrayList<>(16);
         for (QuExportDTO item : importList) {
             QuAnswerDTO a = new QuAnswerDTO();
-            a.setIsRight(item.getAIsRight().equals("1"));
+            a.setIsRight("1".equals(item.getAIsRight()));
             a.setContent(item.getAContent());
             a.setAnalysis(item.getAAnalysis());
             a.setId("");

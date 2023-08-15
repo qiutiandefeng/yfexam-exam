@@ -44,7 +44,7 @@
         <where>
             <if test="query!=null">
                 <if test="query.title!=null and query.title!=''">
-                    AND title LIKE '%${query.title}%'
+                    AND title LIKE CONCAT('%',#{query.title},'%')
                 </if>
 
                 <if test="query.openType!=null">
@@ -86,7 +86,7 @@
 
         <if test="query!=null">
             <if test="query.title!=null and query.title!=''">
-                AND ex.title LIKE '%${query.title}%'
+                AND ex.title LIKE CONCAT('%',#{query.title},'%')
             </if>
 
             <if test="query.openType!=null">

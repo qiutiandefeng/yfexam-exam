@@ -64,7 +64,7 @@
                 </if>
 
                 <if test="query.content!=null and query.content!=''">
-                    AND q.content LIKE '%${query.content}%'
+                    AND q.content LIKE CONCAT('%',#{query.content},'%')
                 </if>
 
                 <if test="query.excludes!=null and query.excludes.size()>0">

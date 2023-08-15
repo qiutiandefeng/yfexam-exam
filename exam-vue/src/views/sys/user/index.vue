@@ -9,7 +9,7 @@
       @multi-actions="handleMultiAction"
     >
 
-      <template slot="filter-content">
+      <template #filter-content>
 
         <el-input v-model="listQuery.params.userName" style="width: 200px" placeholder="搜索登录名" class="filter-item" />
         <el-input v-model="listQuery.params.realName" style="width: 200px" placeholder="搜索姓名" class="filter-item" />
@@ -20,7 +20,7 @@
 
       </template>
 
-      <template slot="data-columns">
+      <template #data-columns>
 
         <el-table-column
           type="selection"
@@ -31,7 +31,7 @@
           align="center"
           label="用户名"
         >
-          <template slot-scope="scope">
+          <template v-slot="scope">
             <a @click="handleUpdate(scope.row)">{{ scope.row.userName }}</a>
           </template>
 
@@ -60,7 +60,7 @@
           label="状态"
         >
 
-          <template slot-scope="scope">
+          <template v-slot="scope">
             {{ scope.row.state | stateFilter }}
           </template>
         </el-table-column>

@@ -33,7 +33,7 @@
         SELECT * FROM sys_depart WHERE parent_id='0'
         <if test="query!=null">
             <if test="query.deptName!=null and query.deptName!=''">
-                AND dept_name LIKE '%${query.deptName}%'
+                AND dept_name LIKE CONCAT('%',#{query.deptName},'%')
             </if>
         </if>
     </select>

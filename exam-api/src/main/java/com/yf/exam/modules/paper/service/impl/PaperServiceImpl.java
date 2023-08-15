@@ -4,10 +4,14 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yf.exam.ability.job.enums.JobGroup;
+import com.yf.exam.ability.job.enums.JobPrefix;
+import com.yf.exam.ability.job.service.JobService;
 import com.yf.exam.core.api.ApiError;
 import com.yf.exam.core.api.dto.PagingReqDTO;
 import com.yf.exam.core.exception.ServiceException;
 import com.yf.exam.core.utils.BeanMapper;
+import com.yf.exam.core.utils.CronUtils;
 import com.yf.exam.modules.exam.dto.ExamDTO;
 import com.yf.exam.modules.exam.dto.ExamRepoDTO;
 import com.yf.exam.modules.exam.dto.ext.ExamRepoExtDTO;
@@ -27,6 +31,7 @@ import com.yf.exam.modules.paper.entity.PaperQu;
 import com.yf.exam.modules.paper.entity.PaperQuAnswer;
 import com.yf.exam.modules.paper.enums.ExamState;
 import com.yf.exam.modules.paper.enums.PaperState;
+import com.yf.exam.modules.paper.job.BreakExamJob;
 import com.yf.exam.modules.paper.mapper.PaperMapper;
 import com.yf.exam.modules.paper.service.PaperQuAnswerService;
 import com.yf.exam.modules.paper.service.PaperQuService;
@@ -90,6 +95,9 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
     @Autowired
     private UserExamService userExamService;
 
+    @Autowired
+    private JobService jobService;
+
     /**
      * 展示的选项，ABC这样
      */
@@ -102,6 +110,7 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
 
 
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public String createPaper(String userId, String examId) {
 
@@ -110,10 +119,11 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
         wrapper.lambda()
                 .eq(Paper::getUserId, userId)
                 .eq(Paper::getState, PaperState.ING);
-        Paper pp = this.getOne(wrapper, false);
+
+        int exists = this.count(wrapper);
 
 
-        if (pp!=null) {
+        if (exists > 0) {
             throw new ServiceException(ApiError.ERROR_20010002);
         }
 
@@ -136,9 +146,13 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
         }
 
         //保存试卷内容
-        String paperId = this.savePaper(userId, exam, quList);
+        Paper paper = this.savePaper(userId, exam, quList);
 
-        return paperId;
+        // 强制交卷任务
+        String jobName = JobPrefix.BREAK_EXAM + paper.getId();
+        jobService.addCronJob(BreakExamJob.class, jobName, CronUtils.dateToCron(paper.getLimitTime()), paper.getId());
+
+        return paper.getId();
     }
 
     @Override
@@ -310,7 +324,7 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
      * @param quList
      * @return
      */
-    private String savePaper(String userId, ExamDTO exam, List<PaperQu> quList) {
+    private Paper savePaper(String userId, ExamDTO exam, List<PaperQu> quList) {
 
 
         // 查找用户
@@ -343,7 +357,7 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
             this.savePaperQu(paper.getId(), quList);
         }
 
-        return paper.getId();
+        return paper;
     }
 
 
@@ -397,6 +411,7 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
         paperQuAnswerService.saveBatch(batchAnswerList);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void fillAnswer(PaperAnswerDTO reqDTO) {
 
@@ -485,6 +500,11 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
         //更新试卷
         paperService.updateById(paper);
 
+
+        // 终止定时任务
+        String name = JobPrefix.BREAK_EXAM + paperId;
+        jobService.deleteJob(name, JobGroup.SYSTEM);
+
         //把打错的问题加入错题本
         List<PaperQuDTO> list = paperQuService.listByPaper(paperId);
         for(PaperQuDTO qu: list){
@@ -493,7 +513,7 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
                 continue;
             }
             //加入错题本
-            userBookService.addBook(paper.getExamId(), qu.getQuId());
+            new Thread(() -> userBookService.addBook(paper.getExamId(), qu.getQuId())).run();
         }
     }
 

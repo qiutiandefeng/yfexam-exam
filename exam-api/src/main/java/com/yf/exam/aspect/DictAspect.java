@@ -176,7 +176,7 @@ public class DictAspect {
             }
 
             //日期格式转换
-            if (field.getType().getName().equals("java.util.Date") && item.get(field.getName()) != null) {
+            if ("java.util.Date".equals(field.getType().getName()) && item.get(field.getName()) != null) {
 
                 // 获取注解
                 JsonFormat ann = field.getAnnotation(JsonFormat.class);

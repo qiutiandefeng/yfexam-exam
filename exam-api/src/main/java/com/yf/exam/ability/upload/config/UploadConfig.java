@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * 文件上传配置
+ * @author van
  */
 @Data
 @Configuration
@@ -22,5 +23,10 @@ public class UploadConfig {
      * 物理目录
      */
     private String dir;
+
+    /**
+     * 允许的后缀
+     */
+    private String [] allowExtensions;
 
 }

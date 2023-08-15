@@ -8,7 +8,7 @@
       :list-query="listQuery"
       @multi-actions="handleMultiAction"
     >
-      <template slot="filter-content">
+      <template #filter-content>
 
         <el-row>
           <el-col :span="24">
@@ -36,14 +36,14 @@
 
       </template>
 
-      <template slot="data-columns">
+      <template #data-columns>
 
         <el-table-column
           label="题目类型"
           align="center"
           width="100px"
         >
-          <template slot-scope="scope">
+          <template v-slot="scope">
             {{ scope.row.quType | quTypeFilter() }}
           </template>
         </el-table-column>
@@ -52,7 +52,7 @@
           label="题目内容"
           show-overflow-tooltip
         >
-          <template slot-scope="scope">
+          <template v-slot="scope">
             <router-link :to="{ name: 'UpdateQu', params:{ id: scope.row.id}}">
               {{ scope.row.content }}
             </router-link>

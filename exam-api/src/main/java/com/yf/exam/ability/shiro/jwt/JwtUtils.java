@@ -5,7 +5,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.yf.exam.core.utils.file.MD5Util;
+import com.yf.exam.core.utils.file.Md5Util;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -92,8 +92,8 @@ public class JwtUtils {
 				.append(cl.get(Calendar.MONTH));
 
 		// 获取MD5
-		String secret = MD5Util.MD5(sb.toString());
+		String secret = Md5Util.md5(sb.toString());
 
-		return  MD5Util.MD5(userName + "&" + secret);
+		return  Md5Util.md5(userName + "&" + secret);
 	}
 }

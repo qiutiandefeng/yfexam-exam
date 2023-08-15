@@ -42,7 +42,7 @@
         </el-form-item>
 
         <el-form-item label="试题图片">
-          <file-upload v-model="postForm.image" />
+          <file-upload v-model="postForm.image" accept=".jpg,.jepg,.png" />
         </el-form-item>
 
         <el-form-item label="整题解析" prop="oriPrice">
@@ -67,7 +67,7 @@
             width="120"
             align="center"
           >
-            <template slot-scope="scope">
+            <template v-slot="scope">
 
               <el-checkbox v-model="scope.row.isRight">答案</el-checkbox>
 
@@ -81,10 +81,11 @@
             width="120px"
             align="center"
           >
-            <template slot-scope="scope">
+            <template v-slot="scope">
 
               <file-upload
                 v-model="scope.row.image"
+                accept=".jpg,.jepg,.png"
               />
 
             </template>
@@ -93,7 +94,7 @@
           <el-table-column
             label="答案内容"
           >
-            <template slot-scope="scope">
+            <template v-slot="scope">
               <el-input v-model="scope.row.content" type="textarea" />
             </template>
           </el-table-column>
@@ -101,7 +102,7 @@
           <el-table-column
             label="答案解析"
           >
-            <template slot-scope="scope">
+            <template v-slot="scope">
               <el-input v-model="scope.row.analysis" type="textarea" />
             </template>
           </el-table-column>
@@ -111,7 +112,7 @@
             align="center"
             width="100px"
           >
-            <template slot-scope="scope">
+            <template v-slot="scope">
               <el-button type="danger" icon="el-icon-delete" circle @click="removeItem(scope.$index)" />
             </template>
           </el-table-column>

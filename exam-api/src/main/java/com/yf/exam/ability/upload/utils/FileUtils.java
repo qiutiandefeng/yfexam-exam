@@ -2,6 +2,7 @@ package com.yf.exam.ability.upload.utils;
 
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.yf.exam.core.utils.DateUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
@@ -122,10 +123,10 @@ public class FileUtils {
 		}
 
 		//文件后缀
-		String suffix = fileName.substring(fileName.lastIndexOf("."));
+		String extension = FilenameUtils.getExtension(fileName);
 
 		//以系统时间命名
-		return IdWorker.getIdStr() + suffix;
+		return IdWorker.getIdStr() + "."+ extension;
 
 	}
 
@@ -139,23 +140,6 @@ public class FileUtils {
 
 		// 创建OSSClient实例。
 		String fileName = file.getOriginalFilename();
-
-		// 需要重命名
-		fileName = renameFile(fileName);
-
-		//获得上传的文件夹
-		String dir = DateUtils.formatDate(new Date(), "yyyy/MM/dd/");
-
-		return new StringBuffer(dir).append(fileName).toString();
-
-	}
-
-	/**
-	 * 处理新的文件路径，为上传文件预设目录，如：2021/01/01/xxx.jpg，要注意的是，前面没有斜杠
-	 * @param fileName 文件
-	 * @return
-	 */
-	public static String processPath(String fileName){
 
 		// 需要重命名
 		fileName = renameFile(fileName);

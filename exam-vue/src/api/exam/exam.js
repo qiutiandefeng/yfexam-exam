@@ -7,6 +7,7 @@ import { post } from '@/utils/request'
 export function fetchDetail(id) {
   return post('/exam/api/exam/exam/detail', { id: id })
 }
+
 /**
  * 保存题库
  * @param data

@@ -1,7 +1,7 @@
 package com.yf.exam.core.utils.passwd;
 
 
-import com.yf.exam.core.utils.file.MD5Util;
+import com.yf.exam.core.utils.file.Md5Util;
 import org.apache.commons.lang3.RandomStringUtils;
 
 /**
@@ -13,7 +13,7 @@ import org.apache.commons.lang3.RandomStringUtils;
  * @version
  */
 public class PassHandler {
-	
+
 	/**
 	 * checkPass:校验密码是否一致
 	 * @author Bool
@@ -23,13 +23,13 @@ public class PassHandler {
 	 * @return
 	 */
 	public static boolean checkPass(String inputPass , String salt , String pass){
-		String pwdMd5 = MD5Util.MD5(inputPass);
-		return MD5Util.MD5(pwdMd5 + salt).equals(pass);
+		String pwdMd5 = Md5Util.md5(inputPass);
+		return Md5Util.md5(pwdMd5 + salt).equals(pass);
 	}
-	
-	
+
+
 	/**
-	 * 
+	 *
 	 * buildPassword:用于用户注册时产生一个密码
 	 * @author Bool
 	 * @param inputPass 输入的密码
@@ -40,16 +40,16 @@ public class PassHandler {
 		//产生一个6位数的随机码
 		String salt = RandomStringUtils.randomAlphabetic(6);
 		//加密后的密码
-		String encryptPassword = MD5Util.MD5(MD5Util.MD5(inputPass)+salt);
+		String encryptPassword = Md5Util.md5(Md5Util.md5(inputPass)+salt);
 		//返回对象
 		return new PassInfo(salt,encryptPassword);
 	}
-	
-	
+
+
 	public static void main(String[] args) {
-		
+
 		PassInfo info = buildPassword("190601");
-		
+
 		System.out.println(info.getPassword());
 		System.out.println(info.getSalt());
 	}

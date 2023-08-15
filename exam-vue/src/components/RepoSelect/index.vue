@@ -34,7 +34,7 @@ export default {
       type: Boolean,
       default: false
     },
-    value: String,
+    value: String | Array,
     excludes: Array
   },
   data() {

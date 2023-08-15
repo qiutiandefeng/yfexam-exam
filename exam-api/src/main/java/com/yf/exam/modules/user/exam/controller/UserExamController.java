@@ -1,4 +1,5 @@
 package com.yf.exam.modules.user.exam.controller;
+
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yf.exam.core.api.ApiRest;
 import com.yf.exam.core.api.controller.BaseController;
@@ -54,7 +55,7 @@ public class UserExamController extends BaseController {
     */
     @ApiOperation(value = "分页查找")
     @RequestMapping(value = "/my-paging", method = { RequestMethod.POST})
-    public ApiRest<IPage<UserExamRespDTO>> MyPaging(@RequestBody PagingReqDTO<UserExamReqDTO> reqDTO) {
+    public ApiRest<IPage<UserExamRespDTO>> myPaging(@RequestBody PagingReqDTO<UserExamReqDTO> reqDTO) {
 
         //分页查询并转换
         IPage<UserExamRespDTO> page = baseService.myPaging(reqDTO);

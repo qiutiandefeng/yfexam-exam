@@ -15,7 +15,7 @@
       :options="options"
       :list-query="listQuery"
     >
-      <template slot="filter-content">
+      <template #filter-content>
 
         <el-select v-model="listQuery.params.openType" class="filter-item" placeholder="开放类型" clearable>
           <el-option
@@ -30,7 +30,7 @@
 
       </template>
 
-      <template slot="data-columns">
+      <template #data-columns>
 
         <el-table-column
           label="考试名称"
@@ -42,7 +42,7 @@
           label="考试类型"
           align="center"
         >
-          <template slot-scope="scope">
+          <template v-slot="scope">
             {{ scope.row.openType | examOpenType }}
           </template>
 
@@ -54,7 +54,7 @@
           align="center"
         >
 
-          <template slot-scope="scope">
+          <template v-slot="scope">
             <span v-if="scope.row.timeLimit">
               {{ scope.row.startTime }} ~ {{ scope.row.endTime }}
             </span>
@@ -68,7 +68,7 @@
           align="center"
         >
 
-          <template slot-scope="scope">
+          <template v-slot="scope">
             {{ scope.row.totalTime }}分钟
           </template>
 
@@ -90,7 +90,7 @@
           label="操作"
           align="center"
         >
-          <template slot-scope="scope">
+          <template v-slot="scope">
             <el-button v-if="scope.row.state===0" icon="el-icon-caret-right" type="primary" size="mini" @click="handlePre(scope.row.id)">去考试</el-button>
             <el-button v-if="scope.row.state===1" icon="el-icon-s-release" size="mini" disabled>已禁用</el-button>
             <el-button v-if="scope.row.state===2" icon="el-icon-s-fold" size="mini" disabled>待开始</el-button>

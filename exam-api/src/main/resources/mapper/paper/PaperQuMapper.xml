@@ -43,7 +43,7 @@
         <result column="image" property="image" />
         <result column="content" property="content" />
         <collection property="answerList" column="{paperId=paper_id,quId=qu_id}"
-                    select="com.yf.exam.modules.paper.mapper.PaperQuAnswerMapper.listForShow"></collection>
+                    select="com.yf.exam.modules.paper.mapper.PaperQuAnswerMapper.listForShow" />
 
     </resultMap>
 
