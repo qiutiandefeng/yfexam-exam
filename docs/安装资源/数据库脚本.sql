@@ -1,15 +1,16 @@
 /*
  Navicat Premium Data Transfer
+
  Source Server         : 127.0.0.1-本地库
  Source Server Type    : MySQL
- Source Server Version : 80028
+ Source Server Version : 80028 (8.0.28)
  Source Host           : localhost:3306
  Source Schema         : yf_exam_lite
-
  Target Server Type    : MySQL
- Target Server Version : 80028
+ Target Server Version : 80028 (8.0.28)
  File Encoding         : 65001
- Date: 03/11/2022 11:26:26
+
+ Date: 20/02/2023 10:38:52
 */
 
 SET NAMES utf8mb4;
@@ -89,7 +90,7 @@ CREATE TABLE `el_exam_repo` (
 -- Records of el_exam_repo
 -- ----------------------------
 BEGIN;
-INSERT INTO `el_exam_repo` (`id`, `exam_id`, `repo_id`, `radio_count`, `radio_score`, `multi_count`, `multi_score`, `judge_count`, `judge_score`, `saq_count`, `saq_score`) VALUES ('1587998495732772865', '1587621704140427265', '1587622451624120321', 5, 10, 3, 10, 2, 10, 0, 0);
+INSERT INTO `el_exam_repo` (`id`, `exam_id`, `repo_id`, `radio_count`, `radio_score`, `multi_count`, `multi_score`, `judge_count`, `judge_score`, `saq_count`, `saq_score`) VALUES ('1627496519370297345', '1587621704140427265', '1587622451624120321', 2, 10, 6, 10, 2, 10, 0, 0);
 COMMIT;
 
 -- ----------------------------
@@ -222,7 +223,7 @@ INSERT INTO `el_qu` (`id`, `qu_type`, `level`, `image`, `content`, `create_time`
 INSERT INTO `el_qu` (`id`, `qu_type`, `level`, `image`, `content`, `create_time`, `update_time`, `remark`, `analysis`) VALUES ('1587622643626774530', 1, 1, '', '地球公转会产生（）', '2022-11-02 09:48:30', '2022-11-02 09:48:30', '', '地球自转产生的现象有： 1、昼夜更替现象，向着太阳的半球,是白天,背着太阳的半球,是黑夜； 2、南北半球的地转偏向力引起的各种运动旋转现象； 3、地球上不同经度的地方,有不同的地方时；经度每隔15度,地方时相差一小时； 4、东西部地区的时间差现象，生物作息规律现象； 5、对地球形状的影响.地球自转所产生的惯性离心力,使得地球由两级向赤道逐渐膨胀,成为目前略扁的旋转椭球体。 地球公转产生的现象有： 1、根据太阳高度的差异,划分出五带：北寒、北温、热带、南温、南寒； 2、根据获得热量多少的时间差异,划分出四季：春、夏、秋、冬； 3、昼夜长短的变化现象； 4、天象位置的变化；生物生长规律现象. 5、正午太阳高度的变化；夏至日太阳直射北回归线，全球正午太阳高度从北回归线向南北两侧逐渐递减；二分日太阳直射赤道，全球正午太阳高度从赤道向两极递减，全球昼夜平分；冬至日太阳直射南回归线，全球正午高度从南回归线向南北两侧逐渐递减，南回归线及其以南的地区正午太阳高度达到最大值，北半球各纬度正午太阳高度达到最小值。');
 INSERT INTO `el_qu` (`id`, `qu_type`, `level`, `image`, `content`, `create_time`, `update_time`, `remark`, `analysis`) VALUES ('1587622643693883394', 2, 1, '', '南极旅游的兴起，请下列哪些因素有关（）', '2022-11-02 09:48:30', '2022-11-02 09:48:30', '', '');
 INSERT INTO `el_qu` (`id`, `qu_type`, `level`, `image`, `content`, `create_time`, `update_time`, `remark`, `analysis`) VALUES ('1587622643760992258', 2, 1, '', '交通运输线路（公路、铁路），选址的原因有（）', '2022-11-02 09:48:30', '2022-11-02 09:48:30', '', '');
-INSERT INTO `el_qu` (`id`, `qu_type`, `level`, `image`, `content`, `create_time`, `update_time`, `remark`, `analysis`) VALUES ('1587622643823906818', 2, 1, '', '地球自转产生的现象有（）', '2022-11-02 09:48:30', '2022-11-02 09:48:30', '', '');
+INSERT INTO `el_qu` (`id`, `qu_type`, `level`, `image`, `content`, `create_time`, `update_time`, `remark`, `analysis`) VALUES ('1587622643823906818', 2, 1, 'http://localhost:8201/upload/file/2022/11/07/1589528183307354113.jpg', '地球自转产生的现象有（）', '2022-11-02 09:48:30', '2022-11-02 09:48:30', '', '');
 INSERT INTO `el_qu` (`id`, `qu_type`, `level`, `image`, `content`, `create_time`, `update_time`, `remark`, `analysis`) VALUES ('1587622643895209985', 2, 1, '', '地球公转产生的现象有（）', '2022-11-02 09:48:30', '2022-11-02 09:48:30', '', '');
 INSERT INTO `el_qu` (`id`, `qu_type`, `level`, `image`, `content`, `create_time`, `update_time`, `remark`, `analysis`) VALUES ('1587622643979096066', 3, 1, '', '地球上出现的潮汐是由于地月吸引力。', '2022-11-02 09:48:30', '2022-11-02 09:48:30', '', '');
 INSERT INTO `el_qu` (`id`, `qu_type`, `level`, `image`, `content`, `create_time`, `update_time`, `remark`, `analysis`) VALUES ('1587622644054593538', 3, 1, '', '被称为“万园之园”的我国古典园林是颐和园。', '2022-11-02 09:48:30', '2022-11-02 09:48:30', '', '');
@@ -337,9 +338,9 @@ INSERT INTO `el_qu_answer` (`id`, `qu_id`, `is_right`, `image`, `content`, `anal
 INSERT INTO `el_qu_answer` (`id`, `qu_id`, `is_right`, `image`, `content`, `analysis`) VALUES ('1587622643769380865', '1587622643760992258', 1, '', '地形坡度和缓', '');
 INSERT INTO `el_qu_answer` (`id`, `qu_id`, `is_right`, `image`, `content`, `analysis`) VALUES ('1587622643769380866', '1587622643760992258', 0, '', '隧道多', '');
 INSERT INTO `el_qu_answer` (`id`, `qu_id`, `is_right`, `image`, `content`, `analysis`) VALUES ('1587622643769380867', '1587622643760992258', 0, '', '地形复杂', '');
-INSERT INTO `el_qu_answer` (`id`, `qu_id`, `is_right`, `image`, `content`, `analysis`) VALUES ('1587622643832295426', '1587622643823906818', 1, '', '南北半球的地转偏向力引起的各种运动旋转现象；', '');
+INSERT INTO `el_qu_answer` (`id`, `qu_id`, `is_right`, `image`, `content`, `analysis`) VALUES ('1587622643832295426', '1587622643823906818', 1, 'http://localhost:8201/upload/file/2022/11/07/1589528211451133954.jpg', '南北半球的地转偏向力引起的各种运动旋转现象；', '');
 INSERT INTO `el_qu_answer` (`id`, `qu_id`, `is_right`, `image`, `content`, `analysis`) VALUES ('1587622643832295427', '1587622643823906818', 1, '', '地球上不同经度的地方,有不同的地方时；经度每隔15度,地方时相差一小时；', '');
-INSERT INTO `el_qu_answer` (`id`, `qu_id`, `is_right`, `image`, `content`, `analysis`) VALUES ('1587622643832295428', '1587622643823906818', 1, '', '东西部地区的时间差现象，生物作息规律现象；', '');
+INSERT INTO `el_qu_answer` (`id`, `qu_id`, `is_right`, `image`, `content`, `analysis`) VALUES ('1587622643832295428', '1587622643823906818', 1, 'http://localhost:8201/upload/file/2022/11/07/1589528315486650369.jpeg', '东西部地区的时间差现象，生物作息规律现象；', '');
 INSERT INTO `el_qu_answer` (`id`, `qu_id`, `is_right`, `image`, `content`, `analysis`) VALUES ('1587622643832295429', '1587622643823906818', 1, '', '对地球形状的影响.地球自转所产生的惯性离心力,使得地球由两级向赤道逐渐膨胀,成为目前略扁的旋转椭球体。', '');
 INSERT INTO `el_qu_answer` (`id`, `qu_id`, `is_right`, `image`, `content`, `analysis`) VALUES ('1587622643832295430', '1587622643823906818', 1, '', '昼夜更替现象，向着太阳的半球,是白天,背着太阳的半球,是黑夜；', '');
 INSERT INTO `el_qu_answer` (`id`, `qu_id`, `is_right`, `image`, `content`, `analysis`) VALUES ('1587622643903598594', '1587622643895209985', 1, '', '根据太阳高度的差异,划分出五带：北寒、北温、热带、南温、南寒；', '');
@@ -386,30 +387,30 @@ INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('
 INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670159941633', '1587622643626774530', '1587622451624120321', 1, 3);
 INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670180913153', '1587622644134285314', '1587622451624120321', 3, 4);
 INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670201884673', '1587622643979096066', '1587622451624120321', 3, 5);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670222856193', '1587622643823906818', '1587622451624120321', 2, 6);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670243827714', '1587622644356583425', '1587622451624120321', 1, 7);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670268993537', '1587622643693883394', '1587622451624120321', 2, 8);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670315130881', '1587622644201394178', '1587622451624120321', 3, 9);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670340296706', '1587622644054593538', '1587622451624120321', 3, 10);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670361268226', '1587622643895209985', '1587622451624120321', 2, 11);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670382239745', '1587622642641113089', '1587622451624120321', 1, 12);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670411599873', '1587622643102486530', '1587622451624120321', 1, 13);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670436765698', '1587622642473340930', '1587622451624120321', 1, 14);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670461931522', '1587622642976657410', '1587622451624120321', 3, 15);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670491291650', '1587622642263625729', '1587622451624120321', 1, 16);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670520651778', '1587622643467390977', '1587622451624120321', 1, 17);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670545817602', '1587622642838245378', '1587622451624120321', 2, 18);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670575177730', '1587622643312201730', '1587622451624120321', 1, 19);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670604537858', '1587622642699833345', '1587622451624120321', 1, 20);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670638092289', '1587622643173789698', '1587622451624120321', 1, 21);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670667452417', '1587622642557227009', '1587622451624120321', 1, 22);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670696812545', '1587622643039571970', '1587622451624120321', 1, 23);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670721978369', '1587622643551277058', '1587622451624120321', 1, 24);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670751338497', '1587622642393649153', '1587622451624120321', 1, 25);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670776504322', '1587622642909548545', '1587622451624120321', 3, 26);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670810058754', '1587622643396087810', '1587622451624120321', 1, 27);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670843613186', '1587622642762747906', '1587622451624120321', 2, 28);
-INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670872973313', '1587622643240898561', '1587622451624120321', 1, 29);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670243827714', '1587622644356583425', '1587622451624120321', 1, 6);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670268993537', '1587622643693883394', '1587622451624120321', 2, 7);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670315130881', '1587622644201394178', '1587622451624120321', 3, 8);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670340296706', '1587622644054593538', '1587622451624120321', 3, 9);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670361268226', '1587622643895209985', '1587622451624120321', 2, 10);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670382239745', '1587622642641113089', '1587622451624120321', 1, 11);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670411599873', '1587622643102486530', '1587622451624120321', 1, 12);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670436765698', '1587622642473340930', '1587622451624120321', 1, 13);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670461931522', '1587622642976657410', '1587622451624120321', 3, 14);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670491291650', '1587622642263625729', '1587622451624120321', 1, 15);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670520651778', '1587622643467390977', '1587622451624120321', 1, 16);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670545817602', '1587622642838245378', '1587622451624120321', 2, 17);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670575177730', '1587622643312201730', '1587622451624120321', 1, 18);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670604537858', '1587622642699833345', '1587622451624120321', 1, 19);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670638092289', '1587622643173789698', '1587622451624120321', 1, 20);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670667452417', '1587622642557227009', '1587622451624120321', 1, 21);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670696812545', '1587622643039571970', '1587622451624120321', 1, 22);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670721978369', '1587622643551277058', '1587622451624120321', 1, 23);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670751338497', '1587622642393649153', '1587622451624120321', 1, 24);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670776504322', '1587622642909548545', '1587622451624120321', 3, 25);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670810058754', '1587622643396087810', '1587622451624120321', 1, 26);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670843613186', '1587622642762747906', '1587622451624120321', 2, 27);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1587622670872973313', '1587622643240898561', '1587622451624120321', 1, 28);
+INSERT INTO `el_qu_repo` (`id`, `qu_id`, `repo_id`, `qu_type`, `sort`) VALUES ('1589528323552296962', '1587622643823906818', '1587622451624120321', 2, 29);
 COMMIT;
 
 -- ----------------------------
@@ -478,6 +479,246 @@ CREATE TABLE `el_user_exam` (
 
 -- ----------------------------
 -- Records of el_user_exam
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for QRTZ_BLOB_TRIGGERS
+-- ----------------------------
+DROP TABLE IF EXISTS `QRTZ_BLOB_TRIGGERS`;
+CREATE TABLE `QRTZ_BLOB_TRIGGERS` (
+  `SCHED_NAME` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
+  `TRIGGER_NAME` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `TRIGGER_GROUP` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `BLOB_DATA` blob,
+  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
+  CONSTRAINT `qrtz_blob_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `QRTZ_TRIGGERS` (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of QRTZ_BLOB_TRIGGERS
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for QRTZ_CALENDARS
+-- ----------------------------
+DROP TABLE IF EXISTS `QRTZ_CALENDARS`;
+CREATE TABLE `QRTZ_CALENDARS` (
+  `SCHED_NAME` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
+  `CALENDAR_NAME` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `CALENDAR` blob NOT NULL,
+  PRIMARY KEY (`SCHED_NAME`,`CALENDAR_NAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of QRTZ_CALENDARS
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for QRTZ_CRON_TRIGGERS
+-- ----------------------------
+DROP TABLE IF EXISTS `QRTZ_CRON_TRIGGERS`;
+CREATE TABLE `QRTZ_CRON_TRIGGERS` (
+  `SCHED_NAME` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
+  `TRIGGER_NAME` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `TRIGGER_GROUP` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `CRON_EXPRESSION` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `TIME_ZONE_ID` varchar(80) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
+  CONSTRAINT `qrtz_cron_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `QRTZ_TRIGGERS` (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of QRTZ_CRON_TRIGGERS
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for QRTZ_FIRED_TRIGGERS
+-- ----------------------------
+DROP TABLE IF EXISTS `QRTZ_FIRED_TRIGGERS`;
+CREATE TABLE `QRTZ_FIRED_TRIGGERS` (
+  `SCHED_NAME` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
+  `ENTRY_ID` varchar(95) COLLATE utf8mb4_general_ci NOT NULL,
+  `TRIGGER_NAME` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `TRIGGER_GROUP` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `INSTANCE_NAME` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `FIRED_TIME` bigint NOT NULL,
+  `SCHED_TIME` bigint NOT NULL,
+  `PRIORITY` int NOT NULL,
+  `STATE` varchar(16) COLLATE utf8mb4_general_ci NOT NULL,
+  `JOB_NAME` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `JOB_GROUP` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `IS_NONCONCURRENT` varchar(1) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `REQUESTS_RECOVERY` varchar(1) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`SCHED_NAME`,`ENTRY_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of QRTZ_FIRED_TRIGGERS
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for QRTZ_JOB_DETAILS
+-- ----------------------------
+DROP TABLE IF EXISTS `QRTZ_JOB_DETAILS`;
+CREATE TABLE `QRTZ_JOB_DETAILS` (
+  `SCHED_NAME` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
+  `JOB_NAME` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `JOB_GROUP` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `DESCRIPTION` varchar(250) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `JOB_CLASS_NAME` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
+  `IS_DURABLE` varchar(1) COLLATE utf8mb4_general_ci NOT NULL,
+  `IS_NONCONCURRENT` varchar(1) COLLATE utf8mb4_general_ci NOT NULL,
+  `IS_UPDATE_DATA` varchar(1) COLLATE utf8mb4_general_ci NOT NULL,
+  `REQUESTS_RECOVERY` varchar(1) COLLATE utf8mb4_general_ci NOT NULL,
+  `JOB_DATA` blob,
+  PRIMARY KEY (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of QRTZ_JOB_DETAILS
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for QRTZ_LOCKS
+-- ----------------------------
+DROP TABLE IF EXISTS `QRTZ_LOCKS`;
+CREATE TABLE `QRTZ_LOCKS` (
+  `SCHED_NAME` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
+  `LOCK_NAME` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`SCHED_NAME`,`LOCK_NAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of QRTZ_LOCKS
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for QRTZ_PAUSED_TRIGGER_GRPS
+-- ----------------------------
+DROP TABLE IF EXISTS `QRTZ_PAUSED_TRIGGER_GRPS`;
+CREATE TABLE `QRTZ_PAUSED_TRIGGER_GRPS` (
+  `SCHED_NAME` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
+  `TRIGGER_GROUP` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of QRTZ_PAUSED_TRIGGER_GRPS
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for QRTZ_SCHEDULER_STATE
+-- ----------------------------
+DROP TABLE IF EXISTS `QRTZ_SCHEDULER_STATE`;
+CREATE TABLE `QRTZ_SCHEDULER_STATE` (
+  `SCHED_NAME` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
+  `INSTANCE_NAME` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `LAST_CHECKIN_TIME` bigint NOT NULL,
+  `CHECKIN_INTERVAL` bigint NOT NULL,
+  PRIMARY KEY (`SCHED_NAME`,`INSTANCE_NAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of QRTZ_SCHEDULER_STATE
+-- ----------------------------
+BEGIN;
+INSERT INTO `QRTZ_SCHEDULER_STATE` (`SCHED_NAME`, `INSTANCE_NAME`, `LAST_CHECKIN_TIME`, `CHECKIN_INTERVAL`) VALUES ('examScheduler', 'MacBook-Pro-16.local1676860344454', 1676860726631, 10000);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for QRTZ_SIMPLE_TRIGGERS
+-- ----------------------------
+DROP TABLE IF EXISTS `QRTZ_SIMPLE_TRIGGERS`;
+CREATE TABLE `QRTZ_SIMPLE_TRIGGERS` (
+  `SCHED_NAME` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
+  `TRIGGER_NAME` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `TRIGGER_GROUP` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `REPEAT_COUNT` bigint NOT NULL,
+  `REPEAT_INTERVAL` bigint NOT NULL,
+  `TIMES_TRIGGERED` bigint NOT NULL,
+  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
+  CONSTRAINT `qrtz_simple_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `QRTZ_TRIGGERS` (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of QRTZ_SIMPLE_TRIGGERS
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for QRTZ_SIMPROP_TRIGGERS
+-- ----------------------------
+DROP TABLE IF EXISTS `QRTZ_SIMPROP_TRIGGERS`;
+CREATE TABLE `QRTZ_SIMPROP_TRIGGERS` (
+  `SCHED_NAME` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
+  `TRIGGER_NAME` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `TRIGGER_GROUP` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `STR_PROP_1` varchar(512) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `STR_PROP_2` varchar(512) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `STR_PROP_3` varchar(512) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `INT_PROP_1` int DEFAULT NULL,
+  `INT_PROP_2` int DEFAULT NULL,
+  `LONG_PROP_1` bigint DEFAULT NULL,
+  `LONG_PROP_2` bigint DEFAULT NULL,
+  `DEC_PROP_1` decimal(13,4) DEFAULT NULL,
+  `DEC_PROP_2` decimal(13,4) DEFAULT NULL,
+  `BOOL_PROP_1` varchar(1) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `BOOL_PROP_2` varchar(1) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
+  CONSTRAINT `qrtz_simprop_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `QRTZ_TRIGGERS` (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of QRTZ_SIMPROP_TRIGGERS
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for QRTZ_TRIGGERS
+-- ----------------------------
+DROP TABLE IF EXISTS `QRTZ_TRIGGERS`;
+CREATE TABLE `QRTZ_TRIGGERS` (
+  `SCHED_NAME` varchar(120) COLLATE utf8mb4_general_ci NOT NULL,
+  `TRIGGER_NAME` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `TRIGGER_GROUP` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `JOB_NAME` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `JOB_GROUP` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `DESCRIPTION` varchar(250) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `NEXT_FIRE_TIME` bigint DEFAULT NULL,
+  `PREV_FIRE_TIME` bigint DEFAULT NULL,
+  `PRIORITY` int DEFAULT NULL,
+  `TRIGGER_STATE` varchar(16) COLLATE utf8mb4_general_ci NOT NULL,
+  `TRIGGER_TYPE` varchar(8) COLLATE utf8mb4_general_ci NOT NULL,
+  `START_TIME` bigint NOT NULL,
+  `END_TIME` bigint DEFAULT NULL,
+  `CALENDAR_NAME` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `MISFIRE_INSTR` smallint DEFAULT NULL,
+  `JOB_DATA` blob,
+  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
+  KEY `SCHED_NAME` (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
+  CONSTRAINT `qrtz_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`) REFERENCES `QRTZ_JOB_DETAILS` (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of QRTZ_TRIGGERS
 -- ----------------------------
 BEGIN;
 COMMIT;
