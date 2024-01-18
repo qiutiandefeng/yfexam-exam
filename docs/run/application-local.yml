@@ -43,6 +43,8 @@ conf:
     # 访问地址，注意不要去除/upload/file/，此节点为虚拟标识符
     # 如：http://localhost:8101/upload/file/exam.jpg，对应物理文件为：/data/upload/exam.jpg
     url: http://localhost:8101/upload/file/
+     # 允许上传的文件后缀
+    allow-extensions: jpg,jpeg,png
 
 # 开启文档
 swagger:
