@@ -38,7 +38,6 @@ public interface QuService extends IService<Qu> {
      * 随机抽取题库的数据
      * @param repoId
      * @param quType
-     * @param level  难度等级
      * @param excludes 要排除的ID列表
      * @param size
      * @return

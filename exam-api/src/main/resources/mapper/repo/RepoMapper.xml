@@ -37,7 +37,6 @@
                 <if test="query.title!=null and query.title!=''">
                     AND repo.title LIKE CONCAT('%',#{query.title}, '%')
                 </if>
-
                 <if test="query.excludes!=null and query.excludes.size()>0">
                     AND repo.id NOT IN
                     <foreach collection="query.excludes" open="(" close=")" separator="," item="id">

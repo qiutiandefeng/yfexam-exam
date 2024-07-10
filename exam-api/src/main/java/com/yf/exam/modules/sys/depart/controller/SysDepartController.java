@@ -15,6 +15,7 @@ import com.yf.exam.modules.sys.depart.entity.SysDepart;
 import com.yf.exam.modules.sys.depart.service.SysDepartService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,6 +46,7 @@ public class SysDepartController extends BaseController {
     * @param reqDTO
     * @return
     */
+    @RequiresRoles("sa")
     @ApiOperation(value = "添加或修改")
     @RequestMapping(value = "/save", method = { RequestMethod.POST})
     public ApiRest save(@RequestBody SysDepartDTO reqDTO) {
@@ -57,6 +59,7 @@ public class SysDepartController extends BaseController {
     * @param reqDTO
     * @return
     */
+    @RequiresRoles("sa")
     @ApiOperation(value = "批量删除")
     @RequestMapping(value = "/delete", method = { RequestMethod.POST})
     public ApiRest edit(@RequestBody BaseIdsReqDTO reqDTO) {
@@ -70,6 +73,7 @@ public class SysDepartController extends BaseController {
     * @param reqDTO
     * @return
     */
+    @RequiresRoles("sa")
     @ApiOperation(value = "查找详情")
     @RequestMapping(value = "/detail", method = { RequestMethod.POST})
     public ApiRest<SysDepartDTO> find(@RequestBody BaseIdReqDTO reqDTO) {
@@ -84,6 +88,7 @@ public class SysDepartController extends BaseController {
     * @param reqDTO
     * @return
     */
+    @RequiresRoles("sa")
     @ApiOperation(value = "分页查找")
     @RequestMapping(value = "/paging", method = { RequestMethod.POST})
     public ApiRest<IPage<SysDepartTreeDTO>> paging(@RequestBody PagingReqDTO<SysDepartDTO> reqDTO) {
@@ -99,6 +104,7 @@ public class SysDepartController extends BaseController {
      * @param reqDTO
      * @return
      */
+    @RequiresRoles("sa")
     @ApiOperation(value = "查找列表")
     @RequestMapping(value = "/list", method = { RequestMethod.POST})
     public ApiRest<List<SysDepartDTO>> list(@RequestBody SysDepartDTO reqDTO) {
@@ -120,6 +126,7 @@ public class SysDepartController extends BaseController {
      * 树列表
      * @return
      */
+    @RequiresRoles("sa")
     @ApiOperation(value = "树列表")
     @RequestMapping(value = "/tree", method = { RequestMethod.POST})
     public ApiRest<List<SysDepartTreeDTO>> tree() {
@@ -133,6 +140,7 @@ public class SysDepartController extends BaseController {
      * @param reqDTO
      * @return
      */
+    @RequiresRoles("sa")
     @ApiOperation(value = "分类排序")
     @RequestMapping(value = "/sort", method = { RequestMethod.POST})
     public ApiRest sort(@RequestBody DepartSortReqDTO reqDTO) {

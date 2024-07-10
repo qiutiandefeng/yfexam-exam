@@ -11,6 +11,7 @@ import com.yf.exam.modules.sys.user.entity.SysRole;
 import com.yf.exam.modules.sys.user.service.SysRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +44,7 @@ public class SysRoleController extends BaseController {
      * @param reqDTO
      * @return
      */
+    @RequiresRoles("sa")
     @ApiOperation(value = "分页查找")
     @RequestMapping(value = "/paging", method = { RequestMethod.POST})
     public ApiRest<IPage<SysRoleDTO>> paging(@RequestBody PagingReqDTO<SysRoleDTO> reqDTO) {
@@ -56,6 +58,7 @@ public class SysRoleController extends BaseController {
      * 查找列表，每次最多返回200条数据
      * @return
      */
+    @RequiresRoles("sa")
     @ApiOperation(value = "查找列表")
     @RequestMapping(value = "/list", method = { RequestMethod.POST})
     public ApiRest<List<SysRoleDTO>> list() {

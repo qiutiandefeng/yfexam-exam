@@ -84,7 +84,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
         SysUser user = this.getOne(wrapper, false);
         if(user == null){
-            throw new ServiceException(ApiError.ERROR_90010001);
+            throw new ServiceException(ApiError.ERROR_90010002);
         }
 
         // 被禁用
@@ -110,7 +110,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         boolean check = JwtUtils.verify(token, username);
 
         if(!check){
-            throw new ServiceException(ApiError.ERROR_90010001);
+            throw new ServiceException(ApiError.ERROR_90010002);
         }
 
         QueryWrapper<SysUser> wrapper = new QueryWrapper<>();

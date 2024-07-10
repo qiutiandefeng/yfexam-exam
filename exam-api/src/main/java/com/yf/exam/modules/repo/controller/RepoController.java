@@ -15,6 +15,7 @@ import com.yf.exam.modules.repo.entity.Repo;
 import com.yf.exam.modules.repo.service.RepoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,6 +47,7 @@ public class RepoController extends BaseController {
     * @param reqDTO
     * @return
     */
+    @RequiresRoles("sa")
     @ApiOperation(value = "添加或修改")
     @RequestMapping(value = "/save", method = { RequestMethod.POST})
     public ApiRest save(@RequestBody RepoDTO reqDTO) {
@@ -58,6 +60,7 @@ public class RepoController extends BaseController {
     * @param reqDTO
     * @return
     */
+    @RequiresRoles("sa")
     @ApiOperation(value = "批量删除")
     @RequestMapping(value = "/delete", method = { RequestMethod.POST})
     public ApiRest edit(@RequestBody BaseIdsReqDTO reqDTO) {
@@ -71,6 +74,7 @@ public class RepoController extends BaseController {
     * @param reqDTO
     * @return
     */
+    @RequiresRoles("sa")
     @ApiOperation(value = "查找详情")
     @RequestMapping(value = "/detail", method = { RequestMethod.POST})
     public ApiRest<RepoDTO> find(@RequestBody BaseIdReqDTO reqDTO) {
@@ -85,6 +89,7 @@ public class RepoController extends BaseController {
     * @param reqDTO
     * @return
     */
+    @RequiresRoles("sa")
     @ApiOperation(value = "分页查找")
     @RequestMapping(value = "/paging", method = { RequestMethod.POST})
     public ApiRest<IPage<RepoRespDTO>> paging(@RequestBody PagingReqDTO<RepoReqDTO> reqDTO) {
@@ -100,6 +105,7 @@ public class RepoController extends BaseController {
      * @param reqDTO
      * @return
      */
+    @RequiresRoles("sa")
     @ApiOperation(value = "批量操作", notes = "批量加入或从题库移除")
     @RequestMapping(value = "/batch-action", method = { RequestMethod.POST})
     public ApiRest batchAction(@RequestBody QuRepoBatchReqDTO reqDTO) {

@@ -46,19 +46,15 @@
                 <if test="query.title!=null and query.title!=''">
                     AND title LIKE CONCAT('%',#{query.title},'%')
                 </if>
-
                 <if test="query.openType!=null">
                     AND open_type = #{query.openType}
                 </if>
-
                 <if test="query.startTime!=null">
                     AND start_time >= #{query.startTime}
                 </if>
-
                 <if test="query.endTime!=null">
                     AND end_time &lt;= #{query.endTime}
                 </if>
-
             </if>
         </where>
     </select>

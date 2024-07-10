@@ -6,6 +6,7 @@
  Source Server Version : 80028 (8.0.28)
  Source Host           : localhost:3306
  Source Schema         : yf_exam_lite
+
  Target Server Type    : MySQL
  Target Server Version : 80028 (8.0.28)
  File Encoding         : 65001

@@ -12,6 +12,8 @@ import com.yf.exam.modules.qu.dto.QuAnswerDTO;
 import com.yf.exam.modules.qu.entity.QuAnswer;
 import com.yf.exam.modules.qu.mapper.QuAnswerMapper;
 import com.yf.exam.modules.qu.service.QuAnswerService;
+import com.yf.exam.modules.qu.utils.ImageCheckUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -28,6 +30,9 @@ import java.util.List;
 */
 @Service
 public class QuAnswerServiceImpl extends ServiceImpl<QuAnswerMapper, QuAnswer> implements QuAnswerService {
+
+    @Autowired
+    private ImageCheckUtils imageCheckUtils;
 
     @Override
     public IPage<QuAnswerDTO> paging(PagingReqDTO<QuAnswerDTO> reqDTO) {
@@ -100,6 +105,9 @@ public class QuAnswerServiceImpl extends ServiceImpl<QuAnswerMapper, QuAnswer> i
 
         if(!CollectionUtils.isEmpty(list)){
             for(QuAnswerDTO item: list){
+
+                // 校验图片地址
+                imageCheckUtils.checkImage(item.getImage(), "选项图片地址错误！");
 
                 //标签ID
                 String id = item.getId();

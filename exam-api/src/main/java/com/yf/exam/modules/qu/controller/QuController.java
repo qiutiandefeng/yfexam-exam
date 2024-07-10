@@ -23,6 +23,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,6 +61,7 @@ public class QuController extends BaseController {
      * @param reqDTO
      * @return
      */
+    @RequiresRoles("sa")
     @ApiOperation(value = "添加或修改")
     @RequestMapping(value = "/save", method = {RequestMethod.POST})
     public ApiRest<BaseIdRespDTO> save(@RequestBody QuDetailDTO reqDTO) {
@@ -73,6 +75,7 @@ public class QuController extends BaseController {
      * @param reqDTO
      * @return
      */
+    @RequiresRoles("sa")
     @ApiOperation(value = "批量删除")
     @RequestMapping(value = "/delete", method = {RequestMethod.POST})
     public ApiRest edit(@RequestBody BaseIdsReqDTO reqDTO) {
@@ -100,6 +103,7 @@ public class QuController extends BaseController {
      * @param reqDTO
      * @return
      */
+    @RequiresRoles("sa")
     @ApiOperation(value = "分页查找")
     @RequestMapping(value = "/paging", method = {RequestMethod.POST})
     public ApiRest<IPage<QuDTO>> paging(@RequestBody PagingReqDTO<QuQueryReqDTO> reqDTO) {
@@ -110,32 +114,11 @@ public class QuController extends BaseController {
         return super.success(page);
     }
 
-    /**
-     * 查找列表，每次最多返回200条数据
-     *
-     * @param reqDTO
-     * @return
-     */
-    @ApiOperation(value = "查找列表")
-    @RequestMapping(value = "/list", method = {RequestMethod.POST})
-    public ApiRest<List<QuDTO>> list(@RequestBody QuDTO reqDTO) {
-
-        //分页查询并转换
-        QueryWrapper<Qu> wrapper = new QueryWrapper<>();
-
-        //转换并返回
-        List<Qu> list = baseService.list(wrapper);
-
-        //转换数据
-        List<QuDTO> dtoList = BeanMapper.mapList(list, QuDTO.class);
-
-        return super.success(dtoList);
-    }
-
 
     /**
      * 导出excel文件
      */
+    @RequiresRoles("sa")
     @ResponseBody
     @RequestMapping(value = "/export")
     public ApiRest exportFile(HttpServletResponse response, @RequestBody QuQueryReqDTO reqDTO) {
@@ -176,8 +159,9 @@ public class QuController extends BaseController {
      * @param file
      * @return
      */
+    @RequiresRoles("sa")
     @ResponseBody
-    @RequestMapping(value = "import")
+    @RequestMapping(value = "/import")
     public ApiRest importFile(@RequestParam("file") MultipartFile file) {
 
         try {

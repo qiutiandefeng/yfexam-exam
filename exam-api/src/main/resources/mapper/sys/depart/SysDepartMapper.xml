@@ -24,7 +24,6 @@
         <collection property="children" column="id" select="findChildren"></collection>
     </resultMap>
 
-
     <select id="findChildren" resultMap="TreeResultMap">
         SELECT * FROM sys_depart WHERE parent_id=#{id}
     </select>

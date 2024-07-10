@@ -39,11 +39,9 @@
             <if test="query.userId!=null and query.userId!=''">
                 AND ue.user_id='{{userId}}'
             </if>
-
             <if test="query.examId!=null and query.examId!=''">
                 AND ue.exam_id = #{query.examId}
             </if>
-
             <if test="query.title!=null and query.title!=''">
                 AND ee.title LIKE CONCAT('%',#{query.title},'%')
             </if>

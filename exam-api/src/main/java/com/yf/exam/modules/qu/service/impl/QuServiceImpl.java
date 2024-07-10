@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yf.exam.ability.upload.config.UploadConfig;
 import com.yf.exam.core.api.dto.PagingReqDTO;
 import com.yf.exam.core.exception.ServiceException;
 import com.yf.exam.core.utils.BeanMapper;
@@ -20,6 +21,7 @@ import com.yf.exam.modules.qu.mapper.QuMapper;
 import com.yf.exam.modules.qu.service.QuAnswerService;
 import com.yf.exam.modules.qu.service.QuRepoService;
 import com.yf.exam.modules.qu.service.QuService;
+import com.yf.exam.modules.qu.utils.ImageCheckUtils;
 import com.yf.exam.modules.repo.service.RepoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,7 +53,7 @@ public class QuServiceImpl extends ServiceImpl<QuMapper, Qu> implements QuServic
     private QuRepoService quRepoService;
 
     @Autowired
-    private RepoService repoService;
+    private ImageCheckUtils imageCheckUtils;
 
     @Override
     public IPage<QuDTO> paging(PagingReqDTO<QuQueryReqDTO> reqDTO) {
@@ -113,6 +115,9 @@ public class QuServiceImpl extends ServiceImpl<QuMapper, Qu> implements QuServic
 
         Qu qu = new Qu();
         BeanMapper.copy(reqDTO, qu);
+
+        // 校验图片地址
+        imageCheckUtils.checkImage(qu.getImage(), "题干图片地址错误！");
 
         // 更新
         this.saveOrUpdate(qu);

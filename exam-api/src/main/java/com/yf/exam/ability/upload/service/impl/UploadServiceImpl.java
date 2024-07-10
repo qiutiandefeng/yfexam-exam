@@ -43,20 +43,15 @@ public class UploadServiceImpl implements UploadService {
         // 文件内容
         MultipartFile file = reqDTO.getFile();
 
-        System.out.println("++++后缀："+FilenameUtils.getExtension(file.getOriginalFilename()));
-
         // 验证文件后缀
         boolean allow = FilenameUtils.isExtension(file.getOriginalFilename(), conf.getAllowExtensions());
         if(!allow){
             throw new ServiceException("文件类型不允许上传！");
         }
-
         // 上传文件夹
         String fileDir = conf.getDir();
-
         // 真实物理地址
         String fullPath;
-
         try {
 
             // 新文件

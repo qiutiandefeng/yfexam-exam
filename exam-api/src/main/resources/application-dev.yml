@@ -35,7 +35,7 @@ spring:
       org:
         quartz:
           scheduler:
-            instanceName: examScheduler
+            instanceName: eamScheduler
             instanceId: AUTO
           jobStore:
             class: org.quartz.impl.jdbcjobstore.JobStoreTX

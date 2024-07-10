@@ -22,6 +22,7 @@ import com.yf.exam.modules.paper.service.PaperService;
 import com.yf.exam.modules.user.UserUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,50 +47,6 @@ public class PaperController extends BaseController {
     private PaperService baseService;
 
     /**
-    * 添加或修改
-    * @param reqDTO
-    * @return
-    */
-    @ApiOperation(value = "添加或修改")
-    @RequestMapping(value = "/save", method = { RequestMethod.POST})
-    public ApiRest<BaseIdRespDTO> save(@RequestBody PaperDTO reqDTO) {
-        //复制参数
-        Paper entity = new Paper();
-        BeanMapper.copy(reqDTO, entity);
-        baseService.saveOrUpdate(entity);
-        return super.success(new BaseIdRespDTO(entity.getId()));
-    }
-
-    /**
-    * 批量删除
-    * @param reqDTO
-    * @return
-    */
-    @ApiOperation(value = "批量删除")
-    @RequestMapping(value = "/delete", method = { RequestMethod.POST})
-    public ApiRest edit(@RequestBody BaseIdsReqDTO reqDTO) {
-        //根据ID删除
-        baseService.removeByIds(reqDTO.getIds());
-        return super.success();
-    }
-
-    /**
-    * 查找详情
-    * @param reqDTO
-    * @return
-    */
-    @ApiOperation(value = "查找详情")
-    @RequestMapping(value = "/detail", method = { RequestMethod.POST})
-    public ApiRest<PaperDTO> find(@RequestBody BaseIdReqDTO reqDTO) {
-        Paper entity = baseService.getById(reqDTO.getId());
-        PaperDTO dto = new PaperDTO();
-        BeanUtils.copyProperties(entity, dto);
-        return super.success(dto);
-    }
-
-
-
-    /**
      * 分页查找
      * @param reqDTO
      * @return
@@ -97,10 +54,8 @@ public class PaperController extends BaseController {
     @ApiOperation(value = "分页查找")
     @RequestMapping(value = "/paging", method = { RequestMethod.POST})
     public ApiRest<IPage<PaperListRespDTO>> paging(@RequestBody PagingReqDTO<PaperListReqDTO> reqDTO) {
-
         //分页查询并转换
         IPage<PaperListRespDTO> page = baseService.paging(reqDTO);
-
         return super.success(page);
     }
 

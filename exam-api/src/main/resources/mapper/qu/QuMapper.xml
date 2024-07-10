@@ -62,11 +62,9 @@
                     AND po.repo_id IN
                     <foreach collection="query.repoIds" open="(" close=")" separator="," item="repoId">#{repoId}</foreach>
                 </if>
-
                 <if test="query.content!=null and query.content!=''">
                     AND q.content LIKE CONCAT('%',#{query.content},'%')
                 </if>
-
                 <if test="query.excludes!=null and query.excludes.size()>0">
                     AND q.id NOT IN
                     <foreach collection="query.excludes" open="(" close=")" separator="," item="quId">

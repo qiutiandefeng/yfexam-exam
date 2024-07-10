@@ -1,0 +1,85 @@
+# 独立配置文件，可以拿到jar外面跑
+spring:
+  application:
+    name: yf-exam-lite
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+  # 数据库配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yf_exam?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    # druid相关配置
+    druid:
+      max-active: 5000
+      initial-size: 20
+      min-idle: 5
+      async-init: true
+      # 监控统计
+      filters: stat,wall
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 5000
+        wall:
+          config:
+            create-table-allow: false
+            alter-table-allow: false
+            drop-table-allow: false
+            truncate-allow: false
+
+  # 定时任务配置
+  quartz:
+    # 数据库方式
+    job-store-type: jdbc
+    # quartz 相关属性配置
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: examScheduler
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: true
+            clusterCheckinInterval: 10000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+
+server:
+  port: 8101
+  # 启用服务端压缩
+  compression:
+    enabled: true
+    min-response-size: 10
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css
+
+# 文件上传配置
+conf:
+  upload:
+    # 物理文件存储位置，以/结束，windows已正斜杠，如：d:/exam-upload/
+    dir: /data/upload/
+    # 访问地址，注意不要去除/upload/file/，此节点为虚拟标识符
+    # 如：http://localhost:8101/upload/file/exam.jpg，对应物理文件为：/data/upload/exam.jpg
+    url: http://localhost:8101/upload/file/
+    # 允许上传的文件后缀
+    allow-extensions: jpg,jpeg,png
+
+# 开启文档
+swagger:
+  enable: true
+
+logging:
+  level:
+    root: debug
+  path: logs/${spring.application.name}/
