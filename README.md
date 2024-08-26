@@ -10,7 +10,7 @@
 # 商业版本
 如果开源版本无法满足您的需求，或者有需求需要定制，可以考虑我们的商业版本     
 商业版演示地址：https://exam.yfhl.net   
-商业版官网地址：https://www.yfhl.net/?plan=githuby
+商业版官网地址：https://www.jeedocm.com/?plan=githuby
 
 QQ交流群二：757328773
 
