@@ -12,9 +12,7 @@
 商业版演示地址：https://exam.yfhl.net   
 商业版官网地址：https://www.jeedocm.com/?plan=githuby
 
-QQ交流群二：757328773
-
-QQ交流群一：865330294（已满）
+QQ交流群：757328773
 
 
 # 商业版咨询
@@ -80,9 +78,8 @@ https://www.ixigua.com/7041491265027834381?utm_source=xiguastudio
 # 其它支持
 网站：https://www.jeedocm.com/?plan=githuby
 
-QQ交流群二：757328773
+QQ交流群：757328773
 
-QQ交流群一：865330294（已满）
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/1207/173238_e6c22c67_2189748.jpeg "17-32-10.jpg")
 ![主界面](https://images.gitee.com/uploads/images/2020/1019/182239_4a87af30_2189748.jpeg "222.jpg")
