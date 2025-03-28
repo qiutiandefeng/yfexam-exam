@@ -67,14 +67,13 @@ https://cdn.yfhl.net/java-win/SQLyog.12.3.1.0.zip
 # 安装视频    
 https://www.ixigua.com/7041491265027834381?utm_source=xiguastudio
 
-# 快速运行（在docs/运行包目录下）  
-1、安装Java环境，要求JDK版本大于1.8
-2、下载编译好的jar包到本目录（或您自行编译）：https://cdn.yfhl.net/lite/exam-api.jar
-3、自行安装MySQL数据库（版本最好是5.7），将安装资源中的数据库初始化.sql导入到安装好的数据库
-4、请修改外置配置文件：application-local.yml 改成您自己的MySQL配置，dir: /data/upload/ 改为自己电脑存在的文件路径。
-5、Windows通过start.bat运行，Linux运行start.sh运行
-6、如果无意外，可通过：http://localhost:8101 访问到项目了
-7、管理员账号密码：admin/admin 学员账号：person/person
+# 快速运行（在docs/运行包目录下）
+1、自行安装MySQL数据库（版本最好是5.7），将`安装资源中`的`数据库初始化.sql`导入到安装好的数据库  
+2、安装Java环境，要求JDK版本大于1.8  
+3、请修改外置配置文件：application-local.yml 改成您自己的MySQL配置，dir: /data/upload/ 改为自己电脑存在的文件路径。  
+4、Windows通过start.bat运行，Linux运行start.sh运行  
+5、如果无意外，可通过：http://localhost:8101 访问到项目了  
+6、管理员账号密码：admin/admin 学员账号：person/person  
  
 # 其它支持
 网站：https://www.jeedocm.com/?plan=githuby
