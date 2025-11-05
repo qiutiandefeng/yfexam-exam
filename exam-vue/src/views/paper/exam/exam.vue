@@ -105,6 +105,7 @@
 import { paperDetail, quDetail, handExam, fillAnswer } from '@/api/paper/exam'
 import { Loading } from 'element-ui'
 import ExamTimer from '@/views/paper/exam/components/ExamTimer'
+import CheatMonitor from '@/utils/cheat-monitor'
 
 export default {
   name: 'ExamProcess',
@@ -150,6 +151,11 @@ export default {
     }
   },
 
+  beforeDestroy() {
+    // 停止防作弊监控
+    CheatMonitor.stopMonitoring();
+  },
+  
   methods: {
 
     // 答题卡样式
@@ -362,7 +368,20 @@ export default {
 
         // 当前选定
         this.fetchQuData(this.cardItem)
+        
+        // 初始化防作弊监控
+        this.initCheatMonitor()
       })
+    },
+    
+    // 初始化防作弊监控
+    initCheatMonitor() {
+      // 假设从用户信息中获取userId
+      const userId = '123456'; // TODO: 替换为实际的用户ID获取逻辑
+      const examId = this.paperData.examId;
+      const paperId = this.paperId;
+      
+      CheatMonitor.init(userId, examId, paperId);
     }
 
   }
